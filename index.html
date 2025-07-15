@@ -153,15 +153,34 @@
                 domainContainer.innerHTML = allDomainsHTML;
             };
 
+            /**
+             * [FIXED] Creates the HTML for the rubric table with a mobile-first structure.
+             * Instead of a single grid, it now creates a grid of columns, where each column
+             * contains a header and its associated list of indicators. This ensures content
+             * stays grouped correctly on all screen sizes.
+             * @param {object} rubric - The rubric object for a competency.
+             * @returns {string} The HTML string for the rubric table.
+             */
             const createRubricHTML = (rubric) => {
                 const levels = Object.keys(rubric);
-                const headerHTML = levels.map(level => `<h4 class="font-bold text-[var(--brand-off-white)] pb-2 border-b border-[var(--brand-slate-blue)]">${level.replace(/ \(.+\)/, '')}</h4>`).join('');
-                const maxRows = Math.max(0, ...levels.map(level => rubric[level] ? rubric[level].length : 0));
-                let bodyHTML = '';
-                for (let i = 0; i < maxRows; i++) {
-                    bodyHTML += levels.map(level => `<p class="text-[var(--brand-cool-gray)] text-sm">${(rubric[level] && rubric[level][i]) || '&nbsp;'}</p>`).join('');
-                }
-                return `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4">${headerHTML}${bodyHTML}</div>`;
+                
+                // Map each level (e.g., "Level 1: Basic") to a full column of HTML.
+                const columnsHTML = levels.map(level => {
+                    // Start with the header for the column.
+                    const header = `<h4 class="font-bold text-[var(--brand-off-white)] pb-2 border-b border-[var(--brand-slate-blue)] mb-3">${level.replace(/ \(.+\)/, '')}</h4>`;
+                    
+                    // Get all indicators for this level, or an empty array if none exist.
+                    const indicators = rubric[level] || [];
+                    
+                    // Map each indicator text to a <p> tag.
+                    const indicatorsHTML = indicators.map(indicator => `<p class="text-[var(--brand-cool-gray)] text-sm mb-2">${indicator}</p>`).join('');
+                    
+                    // Return a single div that wraps the header and its indicators.
+                    return `<div>${header}${indicatorsHTML}</div>`;
+                }).join('');
+
+                // The parent div is a grid that is 1 column on mobile, 2 on tablet, and 4 on desktop.
+                return `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">${columnsHTML}</div>`;
             };
 
             const createCompetencyItemHTML = (comp) => {
