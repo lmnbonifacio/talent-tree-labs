@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Tree Labs - Competency Dictionary</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for custom typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --brand-deep-indigo: #1e1e34;
+            --brand-slate-blue: #48466D;
+            --brand-silver-mist: #A6A5B8;
+            --brand-cool-gray: #D1D1DB;
+            --brand-off-white: #F4F4F7;
+            --font-main: 'Oxanium', sans-serif;
+        }
+        body { 
+            background-color: var(--brand-deep-indigo); 
+            color: var(--brand-cool-gray); 
+            font-family: var(--font-main); 
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--brand-deep-indigo); }
+        ::-webkit-scrollbar-thumb { background: var(--brand-slate-blue); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand-silver-mist); }
+        #page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1636487658590-ce3df9f3a1c5?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center">
+            <span class="text-xl font-bold text-[var(--brand-off-white)]">Talent Tree Labs</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-6">
+            <a href="#" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] transition-colors">Home</a>
+            <a href="#" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] transition-colors">About</a>
+            <a href="#" class="text-[var(--brand-off-white)] font-bold">Competency Dictionary</a>
+            <a href="#" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] transition-colors">Training Programs</a>
+            <a href="#" class="bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-2 px-4 rounded-lg transition-all">Book a Consultation</a>
+        </div>
+        <div class="md:hidden">
+            <button class="text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container mx-auto px-4 py-8">
+        
+        <section id="page-hero" class="relative text-center mt-4 mb-12 py-10 rounded-lg overflow-hidden">
+            <h1 class="relative text-4xl md:text-5xl font-bold text-[var(--brand-off-white)] tracking-tight z-10">Gaming & Esports</h1>
+            <h2 class="relative text-3xl md:text-4xl font-light text-[var(--brand-cool-gray)] z-10">Competency Dictionary</h2>
+        </section>
+        
+        <section class="max-w-5xl mx-auto text-center mb-16 space-y-4 text-[var(--brand-cool-gray)]">
+            <p class="text-lg">
+                Welcome to the Talent Tree Labs Competency Dictionary. This tool is designed to define what "good" truly looks like in the gaming and esports industry. It's a detailed collection of key competencies—the specific knowledge, skills, and attitudes that are observable, measurable, and crucial for success.
+            </p>
+            <p class="text-lg">
+                By establishing clear and objective standards, this dictionary serves as a foundation for smarter recruitment, targeted training, and fair performance management. For individuals, it's a roadmap for personal and professional development, helping you identify the exact skills needed to level up your career.
+            </p>
+        </section>
+
+        <section id="about-framework" class="max-w-6xl mx-auto mb-20 p-8 bg-black/20 border border-[var(--brand-slate-blue)] rounded-xl shadow-2xl">
+            <h3 class="text-3xl font-bold text-center text-[var(--brand-off-white)] mb-8">About the Framework</h3>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4 text-[var(--brand-cool-gray)]">
+                    <p>The gaming and esports industry is a unique convergence of technology, entertainment, and sport. To navigate this complex landscape, our framework organizes the industry's value chain into five interdependent domains.</p>
+                    <p>This model illustrates a clear flow of value: from product creation (Core Product), to the structuring of competition (Competitive Ecosystem), to the cultivation of fanbases (Community Ecosystem), to the production of a commercial spectacle (Spectator Experience), all supported by a robust operational core (Foundational Business Enablement).</p>
+                    <a href="https://drive.google.com/uc?export=download&id=1wAfFSuehT4kXtB69FuZvlYA27vE8fw3E" download="A Foundational Competency Landscape for the Global Gaming & Esports Industry.pdf" class="inline-block mt-4 bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-2 px-4 rounded-lg transition-all">Download the Research PDF</a>
+                </div>
+                <div>
+                    <img src="https://i.ibb.co/4gwGZj82/Gaming-and-Esports-Competency-Dictionary-Framework-visual-selection.png" alt="Framework of Interconnected Domains" class="mx-auto rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </section>
+
+        <main id="competency-domains" class="space-y-16"></main>
+        
+        <footer class="flex justify-center mt-24">
+            <img src="https://i.ibb.co/gMxm52b6/TTL-Logo.png" alt="Talent Tree Labs Logo" class="h-36">
+        </footer>
+    </div>
+
+    <div id="competency-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div id="modal-content" class="bg-[var(--brand-deep-indigo)] border border-[var(--brand-slate-blue)] rounded-lg shadow-2xl w-11/12 h-5/6 max-w-7xl flex flex-col transform scale-95 transition-all duration-300">
+            <header class="flex justify-between items-center p-4 border-b border-[var(--brand-slate-blue)] flex-shrink-0">
+                <h2 id="modal-title" class="text-2xl font-bold text-[var(--brand-off-white)]"></h2>
+                <button id="close-btn" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] text-4xl leading-none transition-colors">&times;</button>
+            </header>
+            <div class="p-6 overflow-y-auto flex-grow">
+                <ul id="competency-list" class="space-y-3"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT LOADING -->
+    <!-- The 'defer' attribute tells the browser to load these scripts in order, after the page content. -->
+    <!-- 1. Load the data -->
+    <script src="competencies.js" defer></script>
+    <!-- 2. Run the application logic that uses the data -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const domainContainer = document.getElementById('competency-domains');
+            const modal = document.getElementById('competency-modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const competencyList = document.getElementById('competency-list');
+            const closeButton = document.getElementById('close-btn');
+
+            if (typeof COMPETENCY_DATA === 'undefined' || !domainContainer) {
+                console.error('Competency data not found. Ensure competencies.js is loaded correctly.');
+                domainContainer.innerHTML = '<p class="text-center text-red-400">Error: Could not load competency data.</p>';
+                return;
+            }
+
+            const createClusterButtonHTML = (domainName, clusterName, competencies) => {
+                const hasDetailedContent = competencies.some(comp => comp.rubric && Object.keys(comp.rubric).length > 0);
+                const buttonClasses = 'cluster-btn bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-[var(--brand-silver-mist)]/50';
+                const disabledClasses = 'opacity-50 cursor-not-allowed hover:bg-[var(--brand-slate-blue)] hover:text-[var(--brand-off-white)]';
+                return `<button class="${buttonClasses} ${!hasDetailedContent ? disabledClasses : ''}" data-domain="${domainName}" data-cluster="${clusterName}" ${!hasDetailedContent ? 'disabled' : ''}>${clusterName}</button>`;
+            };
+
+            const createDomainSectionHTML = (domainName, clusters) => {
+                const clusterButtonsHTML = Object.entries(clusters).map(([clusterName, competencies]) => createClusterButtonHTML(domainName, clusterName, competencies)).join('');
+                return `<section class="mb-12"><h3 class="text-3xl font-bold text-center text-[var(--brand-off-white)] mb-8">${domainName}</h3><div class="flex flex-wrap justify-center gap-4 md:gap-6">${clusterButtonsHTML}</div></section>`;
+            };
+
+            const populateDomains = () => {
+                const allDomainsHTML = Object.entries(COMPETENCY_DATA).map(([domainName, clusters]) => createDomainSectionHTML(domainName, clusters)).join('');
+                domainContainer.innerHTML = allDomainsHTML;
+            };
+
+            const createRubricHTML = (rubric) => {
+                const levels = Object.keys(rubric);
+                const headerHTML = levels.map(level => `<h4 class="font-bold text-[var(--brand-off-white)] pb-2 border-b border-[var(--brand-slate-blue)]">${level.replace(/ \(.+\)/, '')}</h4>`).join('');
+                const maxRows = Math.max(0, ...levels.map(level => rubric[level] ? rubric[level].length : 0));
+                let bodyHTML = '';
+                for (let i = 0; i < maxRows; i++) {
+                    bodyHTML += levels.map(level => `<p class="text-[var(--brand-cool-gray)] text-sm">${(rubric[level] && rubric[level][i]) || '&nbsp;'}</p>`).join('');
+                }
+                return `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-4">${headerHTML}${bodyHTML}</div>`;
+            };
+
+            const createCompetencyItemHTML = (comp) => {
+                const hasRubric = comp.rubric && Object.keys(comp.rubric).length > 0;
+                const titleClasses = `competency-title p-4 flex justify-between items-center transition-colors duration-200 ${hasRubric ? 'cursor-pointer hover:bg-[var(--brand-slate-blue)]/50' : 'cursor-default'}`;
+                const arrowHTML = `<span class="text-xl text-[var(--brand-silver-mist)] transform transition-transform duration-300">${hasRubric ? '&#9662;' : ''}</span>`;
+                let rubricHTML = '';
+                if (hasRubric) {
+                    rubricHTML = `<div class="competency-rubric hidden p-6 bg-black/20"><p class="italic text-[var(--brand-cool-gray)] mb-6">${comp.definition || ''}</p>${createRubricHTML(comp.rubric)}</div>`;
+                }
+                return `<li class="competency-item bg-[var(--brand-deep-indigo)]/90 rounded-lg overflow-hidden border border-[var(--brand-slate-blue)] ${!hasRubric ? 'opacity-60' : ''}"><div class="${titleClasses}"><span>${comp.title}</span>${arrowHTML}</div>${rubricHTML}</li>`;
+            };
+
+            const showCompetenciesForCluster = (domainName, clusterName) => {
+                const competencies = COMPETENCY_DATA[domainName]?.[clusterName] || [];
+                modalTitle.textContent = clusterName;
+                competencyList.innerHTML = competencies.map(createCompetencyItemHTML).join('');
+                openModal();
+            };
+
+            const toggleRubric = (titleElement) => {
+                const rubric = titleElement.nextElementSibling;
+                if (rubric && rubric.classList.contains('competency-rubric')) {
+                    const arrow = titleElement.querySelector('span:last-child');
+                    rubric.classList.toggle('hidden');
+                    arrow.classList.toggle('rotate-180');
+                }
+            };
+
+            const openModal = () => {
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                modalContent.classList.remove('scale-95');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                modalContent.classList.add('scale-95');
+                document.body.style.overflow = '';
+                setTimeout(() => modal.classList.add('pointer-events-none'), 300);
+            };
+
+            domainContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.cluster-btn');
+                if (button && !button.disabled) {
+                    showCompetenciesForCluster(button.dataset.domain, button.dataset.cluster);
+                }
+            });
+
+            competencyList.addEventListener('click', (e) => {
+                const titleElement = e.target.closest('.competency-title');
+                if (titleElement) {
+                    toggleRubric(titleElement);
+                }
+            });
+
+            closeButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) closeModal();
+            });
+            
+            populateDomains();
+        });
+    </script>
+</body>
+</html>
