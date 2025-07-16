@@ -87,13 +87,12 @@
             <h3 class="text-3xl font-bold text-center text-[var(--brand-off-white)] mb-8">About the Framework</h3>
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="space-y-4 text-[var(--brand-cool-gray)]">
-                    <p>The gaming and esports industry is a unique convergence of technology, entertainment, and sport. To accurately capture this landscape, our framework organizes the industry into five interdependent domains, which are then further broken down into 11 job clusters.</p>
-                    <p>This model maps the entire value chain of the industry, from the core product -- the games themselves -- to the competitive spirit that drives the commercial spectacle, supported by its passionate community, all built a top key business foundations.</p>
-                    <!-- [FIXED] Link now points to the PDF in your GitHub assets folder -->
-                    <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download="TTL_Research for GES Competency_16 July 2025.pdf" class="inline-block mt-4 bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-2 px-4 rounded-lg transition-all">Download the Research PDF</a>
+                    <p>The gaming and esports industry is a unique convergence of technology, entertainment, and sport. To navigate this complex landscape, our framework organizes the industry's value chain into five interdependent domains.</p>
+                    <p>This dictionary is structured around five interconnected domains, which are broken down into 11 core Job Clusters. This model maps the entire value chain of the industry, from the core product -- the games themselves -- to the competitive spirit and commercial spectacle, all supported by a passionate community and business foundations.</p>
+                    <a href="assets/talent-tree-research.pdf" download="A Foundational Competency Landscape for the Global Gaming & Esports Industry.pdf" class="inline-block mt-4 bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-2 px-4 rounded-lg transition-all">Download the Research PDF</a>
                 </div>
                 <div>
-                    <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="GES Competency Framework" class="mx-auto rounded-lg shadow-lg w-full">
+                    <img src="assets/framework-v2.png" alt="Framework of Interconnected Domains" class="mx-auto rounded-lg shadow-lg w-full">
                 </div>
             </div>
         </section>
@@ -101,7 +100,7 @@
         <main id="competency-domains" class="space-y-16"></main>
         
         <footer class="flex justify-center mt-24">
-            <img src="assets/TTL-Logo.png" alt="Talent Tree Labs Logo" class="h-36">
+            <img src="assets/ttl-logo.png" alt="Talent Tree Labs Logo" class="h-36">
         </footer>
     </div>
 
@@ -134,11 +133,22 @@
                 return;
             }
 
+            /**
+             * [FIXED] Creates the HTML for a cluster button.
+             * It no longer adds the 'disabled' attribute, making all buttons clickable.
+             * It only adds a visual style ('opacity-50') if there are no rubrics.
+             * @param {string} domainName - The name of the parent domain.
+             * @param {string} clusterName - The name of the cluster.
+             * @param {Array} competencies - The array of competencies for this cluster.
+             * @returns {string} The HTML string for the button.
+             */
             const createClusterButtonHTML = (domainName, clusterName, competencies) => {
                 const hasDetailedContent = competencies.some(comp => comp.rubric && Object.keys(comp.rubric).length > 0);
                 const buttonClasses = 'cluster-btn bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-[var(--brand-silver-mist)]/50';
-                const disabledClasses = 'opacity-50 cursor-not-allowed hover:bg-[var(--brand-slate-blue)] hover:text-[var(--brand-off-white)]';
-                return `<button class="${buttonClasses} ${!hasDetailedContent ? disabledClasses : ''}" data-domain="${domainName}" data-cluster="${clusterName}" ${!hasDetailedContent ? 'disabled' : ''}>${clusterName}</button>`;
+                const noRubricClasses = 'opacity-50'; // Just a visual style, no 'disabled' functionality.
+                
+                // The 'disabled' attribute has been removed from the return statement.
+                return `<button class="${buttonClasses} ${!hasDetailedContent ? noRubricClasses : ''}" data-domain="${domainName}" data-cluster="${clusterName}">${clusterName}</button>`;
             };
 
             const createDomainSectionHTML = (domainName, clusters) => {
@@ -202,9 +212,14 @@
                 setTimeout(() => modal.classList.add('pointer-events-none'), 300);
             };
 
+            /**
+             * [FIXED] The event listener for the domain container.
+             * It no longer checks if the button is disabled, as all buttons are now clickable.
+             */
             domainContainer.addEventListener('click', (e) => {
                 const button = e.target.closest('.cluster-btn');
-                if (button && !button.disabled) {
+                // If a button was clicked, regardless of its style, open the modal.
+                if (button) {
                     showCompetenciesForCluster(button.dataset.domain, button.dataset.cluster);
                 }
             });
