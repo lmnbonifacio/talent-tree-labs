@@ -5,7 +5,7 @@
  */
 
 const COMPETENCY_DATA = {
-  "The Competitive Ecosystem": {
+  "The Competition": {
     "Esports Team Operations & Performance": [
         { 
             "title": "Talent Scouting & Player Acquisition",
@@ -45,7 +45,7 @@ const COMPETENCY_DATA = {
       { "title": "League Governance & Rulebook Management" }, { "title": "Competitive Integrity & Officiating" }, { "title": "Anti-Cheat & Fair Play Enforcement" }
     ]
   },
-  "The Community Ecosystem": {
+  "The Community": {
     "Grassroots & Amateur Development": [
         { 
             "title": "Community Program Design & Management",
@@ -74,7 +74,7 @@ const COMPETENCY_DATA = {
       { "title": "Fan Engagement Strategy" }
     ]
   },
-  "The Spectator Experience": {
+  "The Spectacle": {
     "Live Event Production & Management": [
       { "title": "Event Planning & Production" }, { "title": "Venue Sourcing & Logistics Management" }, { "title": "Broadcast & Technical Integration Management" }, { "title": "Participant & Team Relations" }, { "title": "Prize Pool Management & Distribution" }, { "title": "Ticketing & Spectator Experience Management" }
     ],
@@ -125,7 +125,7 @@ const COMPETENCY_DATA = {
       { "title": "Live Operations & Post-Launch Content Management" }
     ]
   },
-  "Foundational Business Enablement": {
+  "The Business Foundations": {
     "Corporate & Shared Services": [
       { "title": "Human Resources Management" }, { "title": "Financial Management & Accounting" }, { "title": "Legal & Regulatory Compliance" }, { "title": "Project & Program Management" }, { "title": "Stakeholder & Partnership Management" }, { "title": "Data Science & Analytics (as a service)" }
     ],
