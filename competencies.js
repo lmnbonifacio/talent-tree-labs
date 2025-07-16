@@ -5,26 +5,6 @@
  */
 
 const COMPETENCY_DATA = {
-  "The Core Product": {
-    "Game Design & Development": [
-      { "title": "Game Concept & High-Level Design" },
-      { "title": "Game Mechanics & Systems Design" },
-      { "title": "Narrative Design & World-Building" },
-      { "title": "Level Design & Environment Crafting" },
-      { "title": "Character Design & Articulation" },
-      { "title": "Game Engine Proficiency (e.g., Unreal, Unity)" },
-      { "title": "Gameplay Programming & Scripting" },
-      { "title": "AI Programming & Behavior Design" },
-      { "title": "Graphics Programming & Optimization" },
-      { "title": "Technical Art & Pipeline Development" },
-      { "title": "User Interface (UI) & User Experience (UX) Design" },
-      { "title": "Audio Design & Engineering" },
-      { "title": "Game Monetization Design" },
-      { "title": "Quality Assurance (QA) & Test Planning" },
-      { "title": "Game Build & Release Management" },
-      { "title": "Live Operations & Post-Launch Content Management" }
-    ]
-  },
   "The Competitive Ecosystem": {
     "Esports Team Operations & Performance": [
         { 
@@ -123,6 +103,26 @@ const COMPETENCY_DATA = {
             }
         },
         { "title": "Sponsorship & Partnership Sales" }, { "title": "Media Rights Sales & Distribution" }, { "title": "Merchandise & Licensing Management" }, { "title": "Advertising Sales & Operations" }, { "title": "Business Development & Strategic Partnerships" }, { "title": "Market Analysis & Expansion Strategy" }, { "title": "Revenue Diversification & Innovation" }, { "title": "Fan Monetization & CRM Strategy" }, { "title": "Investor Relations & Capital Raising" }
+    ]
+  },
+  "The Core Product": {
+    "Game Design & Development": [
+      { "title": "Game Concept & High-Level Design" },
+      { "title": "Game Mechanics & Systems Design" },
+      { "title": "Narrative Design & World-Building" },
+      { "title": "Level Design & Environment Crafting" },
+      { "title": "Character Design & Articulation" },
+      { "title": "Game Engine Proficiency (e.g., Unreal, Unity)" },
+      { "title": "Gameplay Programming & Scripting" },
+      { "title": "AI Programming & Behavior Design" },
+      { "title": "Graphics Programming & Optimization" },
+      { "title": "Technical Art & Pipeline Development" },
+      { "title": "User Interface (UI) & User Experience (UX) Design" },
+      { "title": "Audio Design & Engineering" },
+      { "title": "Game Monetization Design" },
+      { "title": "Quality Assurance (QA) & Test Planning" },
+      { "title": "Game Build & Release Management" },
+      { "title": "Live Operations & Post-Launch Content Management" }
     ]
   },
   "Foundational Business Enablement": {
