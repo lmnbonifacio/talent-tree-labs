@@ -34,6 +34,15 @@
                     },
                     backgroundImage: {
                         'glow-gradient': 'radial-gradient(circle at 50% 0%, rgba(72, 70, 109, 0.2) 0%, rgba(30, 30, 52, 0) 70%)',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 0.3s ease-out forwards',
                     }
                 }
             }
@@ -44,7 +53,7 @@
         body { 
             background-color: #0B0B15; 
             color: #E2E8F0; 
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden; 
         }
         
         .bg-tech-grid {
@@ -79,7 +88,7 @@
         .sidebar-btn-active {
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
-            border-left: 2px solid #7C3AED; /* brand-accent */
+            border-left: 2px solid #7C3AED; 
         }
 
         /* Scroll Animation Classes */
@@ -166,7 +175,7 @@
                 </div>
                 
                 <div class="mt-8 p-4 bg-brand-indigo/50 rounded border border-brand-slate/40 text-sm text-gray-400 fade-on-scroll">
-                    <span class="text-brand-accent font-bold">Tip:</span> Click on a rubric card to see detailed behavioral indicators.
+                    <span class="text-brand-accent font-bold">Tip:</span> Select a cluster to expand its competencies.
                 </div>
             </div>
         </aside>
@@ -228,56 +237,44 @@
         const pageTitle = document.getElementById('page-title');
         const modal = document.getElementById('modal');
 
-        // --- Scroll Observer Logic (Reused from Index) ---
+        // --- Scroll Observer Logic ---
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // Optional: stop observing once visible
-                        // scrollObserver.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);
 
-            // Observe static elements initially
             document.querySelectorAll('.fade-on-scroll').forEach(el => scrollObserver.observe(el));
 
-            // Initialize Data
             if (typeof COMPETENCY_DATA === 'undefined') {
                 contentArea.innerHTML = '<p class="text-red-400 font-mono">Error: competencies.js not found. Ensure files are in the same folder.</p>';
                 return;
             }
             renderSidebar();
-            // Auto-load first domain
             const firstDomain = Object.keys(COMPETENCY_DATA)[0];
             loadDomain(firstDomain);
-            
-            // Re-trigger observer for dynamic content? 
-            // Since we rebuild contentArea, we'll add the class dynamically and observe new elements inside loadDomain
         });
 
         function renderSidebar() {
             Object.keys(COMPETENCY_DATA).forEach((domain, index) => {
                 const btn = document.createElement('button');
-                // Base styles
                 btn.className = "w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white transition-all duration-200";
                 btn.innerText = domain;
                 btn.onclick = (e) => {
-                    // Reset all buttons
                     document.querySelectorAll('#domain-list button').forEach(b => {
                         b.classList.remove('sidebar-btn-active');
                         b.classList.add('text-gray-400');
                     });
-                    // Activate clicked
                     e.target.classList.remove('text-gray-400');
                     e.target.classList.add('sidebar-btn-active');
                     loadDomain(domain);
                 };
                 domainList.appendChild(btn);
                 
-                // Set first as active initially
                 if (index === 0) {
                     btn.classList.remove('text-gray-400');
                     btn.classList.add('sidebar-btn-active');
@@ -291,7 +288,7 @@
             
             const clusters = COMPETENCY_DATA[domain];
             
-            // Create observer for dynamic content
+            // Observer for the new dynamic items
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const dynamicObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -299,19 +296,33 @@
                 });
             }, observerOptions);
 
-            Object.keys(clusters).forEach(clusterName => {
-                const section = document.createElement('section');
-                // Add fade class
-                section.className = "fade-on-scroll mb-12"; 
-                
-                const h3 = document.createElement('h3');
-                h3.className = "font-display text-2xl font-bold text-white mb-8 flex items-center gap-3 border-l-4 border-brand-slate pl-4";
-                h3.innerText = clusterName;
-                section.appendChild(h3);
+            // Create Container for Accordion Items
+            const listWrapper = document.createElement('div');
+            listWrapper.className = "space-y-4"; 
 
+            Object.keys(clusters).forEach((clusterName, index) => {
+                // Accordion Item Container
+                const item = document.createElement('div');
+                item.className = "fade-on-scroll border border-white/10 rounded-xl overflow-hidden bg-white/5 transition-all duration-300"; 
+                
+                // 1. The Header (Clickable)
+                const headerBtn = document.createElement('button');
+                headerBtn.className = "w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors group select-none";
+                headerBtn.innerHTML = `
+                    <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-brand-accent transition-colors border-l-4 border-brand-slate pl-4">${clusterName}</h3>
+                    <span class="transform transition-transform duration-300 text-gray-400 group-hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                `;
+
+                // 2. The Content (Hidden by default)
+                const contentContainer = document.createElement('div');
+                contentContainer.className = "hidden bg-black/20 p-6 border-t border-white/5";
+                
                 const grid = document.createElement('div');
                 grid.className = "grid md:grid-cols-2 gap-5";
 
+                // 3. The Cards
                 const comps = clusters[clusterName];
                 comps.forEach(comp => {
                     const card = document.createElement('div');
@@ -329,16 +340,39 @@
                     }
                     
                     card.innerHTML = html;
-                    if (hasRubric) card.onclick = () => openModal(comp);
+                    if (hasRubric) card.onclick = (e) => { e.stopPropagation(); openModal(comp); }; // Stop prop so we don't toggle accordion
                     grid.appendChild(card);
                 });
 
-                section.appendChild(grid);
-                contentArea.appendChild(section);
+                contentContainer.appendChild(grid);
                 
+                // Toggle Logic
+                headerBtn.onclick = () => {
+                    const isHidden = contentContainer.classList.contains('hidden');
+                    const icon = headerBtn.querySelector('svg');
+                    
+                    if (isHidden) {
+                        contentContainer.classList.remove('hidden');
+                        contentContainer.classList.add('animate-fadeIn');
+                        icon.style.transform = 'rotate(180deg)';
+                        headerBtn.classList.add('bg-white/5'); // Active state
+                    } else {
+                        contentContainer.classList.add('hidden');
+                        contentContainer.classList.remove('animate-fadeIn');
+                        icon.style.transform = 'rotate(0deg)';
+                        headerBtn.classList.remove('bg-white/5');
+                    }
+                };
+
+                item.appendChild(headerBtn);
+                item.appendChild(contentContainer);
+                listWrapper.appendChild(item);
+
                 // Observe this new section
-                dynamicObserver.observe(section);
+                dynamicObserver.observe(item);
             });
+
+            contentArea.appendChild(listWrapper);
         }
 
         function openModal(comp) {
@@ -366,12 +400,12 @@
                 });
             }
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Lock scroll
+            document.body.style.overflow = 'hidden'; 
         }
 
         function closeModal() {
             modal.classList.add('hidden');
-            document.body.style.overflow = ''; // Unlock scroll
+            document.body.style.overflow = ''; 
         }
     </script>
 </body>
