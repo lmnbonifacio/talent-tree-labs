@@ -9,9 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Configuration -->
     <script>
@@ -55,14 +53,17 @@
             overflow-x: hidden; 
         }
         
+        /* FIX 1: Added 'fixed' attachment to match other pages */
         .bg-tech-grid {
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
+            background-attachment: fixed; 
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
         }
 
+        /* FIX 2: Standardized Glass Panel to match dictionary.html */
         .glass-panel {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(12px);
@@ -103,7 +104,8 @@
         .delay-300 { transition-delay: 300ms; }
     </style>
 </head>
-<body class="antialiased font-sans selection:bg-brand-accent selection:text-white">
+<!-- FIX 3: Moved bg-tech-grid class to the body tag -->
+<body class="antialiased font-sans selection:bg-brand-accent selection:text-white bg-tech-grid">
 
     <!-- NAVIGATION -->
     <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
@@ -123,7 +125,8 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="relative pt-36 pb-20 lg:pt-48 lg:pb-24 overflow-hidden bg-tech-grid">
+    <!-- FIX 4: Removed bg-tech-grid from here -->
+    <section class="relative pt-36 pb-20 lg:pt-48 lg:pb-24 overflow-hidden">
         <!-- Animated Blobs -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-slate/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
