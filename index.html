@@ -66,7 +66,8 @@
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
             background-size: 50px 50px;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0));
+            /* FIX: Pushed mask to 85% so it doesn't fade behind buttons */
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
         }
 
         /* Glassmorphism Utilities */
@@ -90,16 +91,15 @@
         }
 
         /* Gradient Text Utility */
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
         .text-gradient-brand {
             background: linear-gradient(to right, #818cf8, #c084fc, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        
+        /* Shimmer Animation for Button */
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
         }
     </style>
 </head>
@@ -164,7 +164,7 @@
         </div>
     </section>
 
-    <!-- THE TOOLKIT (Moved Up as Requested) -->
+    <!-- THE TOOLKIT (Services) -->
     <section id="services" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-12">
@@ -231,8 +231,149 @@
                                 <svg class="w-5 h-5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                 <span class="text-sm">Diversify revenue beyond unstable sponsorships.</span>
                             </li>
+                            <li class="flex items-center gap-3">
+                                <svg class="w-5 h-5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <span class="text-sm">Replace "hiring friends" with behavioral recruitment.</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 
                 <!-- Statistic Card -->
+                <div class="relative animate-float">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-slate to-brand-accent rounded-2xl blur opacity-30"></div>
+                    <div class="relative glass-panel p-12 rounded-2xl text-center bg-[#0B0B15]">
+                        <!-- ID added to span for JS targeting -->
+                        <p class="font-display text-8xl font-bold text-white mb-2 tracking-tighter">
+                            <span id="lifespan-counter">0</span> Years
+                        </p>
+                        <div class="h-1 w-24 bg-brand-slate mx-auto my-8 rounded-full"></div>
+                        <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Average Organization Lifespan</p>
+                        <p class="mt-6 text-emerald-400 text-sm italic font-medium">"Let's beat the average."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FRAMEWORK & RESEARCH SECTION -->
+    <section id="framework" class="py-24 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">Our Blueprint for the Industry</h2>
+                <p class="text-gray-400">
+                    We don't gatekeep knowledge. We released our foundational research and competency dictionary to map the entire talent landscape of esports.
+                </p>
+            </div>
+
+            <!-- The Framework Image Asset -->
+            <div class="relative max-w-5xl mx-auto mb-16 group cursor-pointer" onclick="window.location.href='dictionary.html'">
+                <div class="absolute -inset-2 bg-gradient-to-r from-brand-slate to-brand-accent rounded-xl blur-xl opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Gaming and Esports Competency Framework" class="relative rounded-xl border border-white/10 shadow-2xl w-full bg-[#1A1A2E]">
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/50 rounded-xl backdrop-blur-sm">
+                    <span class="text-white font-display font-bold text-xl border border-white px-6 py-3 rounded-full">View Interactive Framework</span>
+                </div>
+            </div>
+
+            <!-- Download CTA -->
+            <div class="flex justify-center">
+                <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download class="flex items-center gap-4 px-8 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-lg font-bold transition-all shadow-lg group">
+                    <svg class="w-6 h-6 text-brand-accent group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>Download the Full Research PDF</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE CREDENTIALS (About) -->
+    <section class="py-20 bg-[#080810] border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="font-display text-3xl font-bold text-white mb-6">Grassroots Passion. <br>Corporate Precision.</h2>
+                    <p class="text-gray-400 italic text-lg border-l-2 border-brand-slate pl-6 mb-8">
+                        "I didn't just learn HR; I learned the complex, globally-recognized frameworks for talent strategy, coaching, and organizational transformation."
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-8">
+                        <div>
+                            <h5 class="text-white font-bold mb-2">Foundational Work</h5>
+                            <p class="text-gray-500 text-sm">Co-founder of Loyola Gaming & AcadArena. Managed P2M scholarship funds and national educational libraries.</p>
+                        </div>
+                        <div>
+                            <h5 class="text-white font-bold mb-2">Professional Skill Stack</h5>
+                            <p class="text-gray-500 text-sm">Ex-Ernst & Young (EY) Consultant. SHL-trained Talent Assessor. Led change management for multinational banks.</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Profile Image Placeholder -->
+                 <div class="relative aspect-square max-w-sm mx-auto md:mr-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-500">
+                    <div class="absolute inset-0 bg-brand-slate/20"></div>
+                    <div class="w-full h-full bg-[#1A1A2E] flex items-center justify-center text-gray-600">
+                        [Profile Image]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#05050a] py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-8 w-auto mb-4 opacity-60 grayscale hover:grayscale-0 transition">
+                <p class="text-gray-600 text-sm">Defining "What Good Looks Like" for the Esports Industry.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="dictionary.html" class="text-gray-500 hover:text-white text-sm transition">Competency Dictionary</a>
+                <a href="#" class="text-gray-500 hover:text-white text-sm transition">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counterElement = document.getElementById('lifespan-counter');
+            const targetNumber = 3;
+            
+            // Options for the observer (trigger when 50% of the card is visible)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let currentNumber = 0;
+                        
+                        // The "Ticking" Logic
+                        const interval = setInterval(() => {
+                            counterElement.innerText = currentNumber;
+                            
+                            if (currentNumber >= targetNumber) {
+                                clearInterval(interval);
+                                // Add a "Warning" color flash when it hits the limit
+                                counterElement.parentElement.classList.add('text-brand-accent');
+                                counterElement.parentElement.classList.add('transition-colors'); 
+                                counterElement.parentElement.classList.add('duration-1000');
+                            } else {
+                                currentNumber++;
+                            }
+                        }, 400); // 400ms delay = slow, dramatic tick
+                        
+                        // Stop observing after animation runs once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            if (counterElement) {
+                observer.observe(counterElement);
+            }
+        });
+    </script>
+
+</body>
+</html>
