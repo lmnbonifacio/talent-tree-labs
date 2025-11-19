@@ -4,120 +4,231 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talent Tree Labs | Professionalizing the Ecosystem</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Config -->
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: { indigo: '#1e1e34', slate: '#48466D', mist: '#A6A5B8', cool: '#D1D1DB', white: '#F4F4F7', dark: '#151525' }
+                        brand: { 
+                            indigo: '#1e1e34',      /* Deep Background */
+                            slate: '#48466D',       /* Primary Accent */
+                            light: '#6F6D91',       /* Lighter Accent */
+                            surface: '#262640',     /* Card Backgrounds */
+                            white: '#F4F4F7', 
+                        }
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Oxanium', 'sans-serif'] }
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        display: ['Oxanium', 'sans-serif'] 
+                    },
+                    backgroundImage: {
+                        'glow-gradient': 'radial-gradient(circle at 50% 0%, rgba(72, 70, 109, 0.4) 0%, rgba(30, 30, 52, 0) 70%)',
+                    }
                 }
             }
         }
     </script>
+
     <style>
-        body { background-color: #1e1e34; color: #D1D1DB; }
+        body { 
+            background-color: #1e1e34; 
+            color: #E2E8F0; /* Switched to high-contrast Tailwind slate */
+        }
+        
+        /* Technical Grid Background */
         .bg-tech-grid {
-            background-image: linear-gradient(rgba(72, 70, 109, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(72, 70, 109, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-button {
+            background: rgba(72, 70, 109, 0.2);
+            border: 1px solid rgba(72, 70, 109, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glass-button:hover {
+            background: rgba(72, 70, 109, 0.6);
+            border-color: rgba(111, 109, 145, 0.8);
+            box-shadow: 0 0 20px rgba(72, 70, 109, 0.4);
         }
     </style>
 </head>
-<body class="antialiased bg-brand-indigo font-sans selection:bg-brand-slate selection:text-white">
+<body class="antialiased font-sans selection:bg-brand-slate selection:text-white">
 
     <!-- NAVIGATION -->
-    <nav class="fixed w-full z-50 bg-brand-indigo/90 backdrop-blur-md border-b border-brand-slate/30">
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="font-display font-bold text-2xl text-brand-white tracking-wide hover:text-brand-mist transition">TALENT TREE LABS</a>
+            <!-- LOGO ASSET -->
+            <a href="index.html" class="block hover:opacity-80 transition">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-12 w-auto"> 
+            </a>
+
             <div class="hidden md:flex items-center space-x-8">
-                <a href="dictionary.html" class="text-sm font-medium text-brand-mist hover:text-brand-white transition-colors">Competency Dictionary</a>
-                <a href="#services" class="text-sm font-medium text-brand-mist hover:text-brand-white transition-colors">Services</a>
-                <a href="consultation.html" class="px-5 py-2 bg-brand-slate hover:bg-brand-slate/80 text-brand-white text-sm font-bold rounded-md transition-all shadow-lg">Book Consultation</a>
+                <a href="dictionary.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Competency Dictionary</a>
+                <a href="#framework" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Our Research</a>
+                <a href="consultation.html" class="px-5 py-2 bg-brand-slate hover:bg-brand-light text-white text-sm font-bold rounded transition-all shadow-lg hover:shadow-brand-slate/50">
+                    Book Consultation
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-tech-grid">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-3xl">
-                <div class="inline-block px-3 py-1 border border-brand-slate/50 rounded-full bg-brand-slate/10 text-xs font-display text-brand-mist tracking-widest uppercase mb-6">Professionalization & Upskilling</div>
-                <h1 class="font-display text-5xl md:text-7xl font-bold text-brand-white leading-tight mb-6">
+    <!-- HERO SECTION -->
+    <section class="relative pt-36 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-tech-grid">
+        <!-- Ambient Glow -->
+        <div class="absolute top-0 left-0 w-full h-full bg-glow-gradient pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center md:text-left">
+            <div class="max-w-4xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-slate/20 border border-brand-slate/40 mb-8 backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-display font-bold text-emerald-300 tracking-widest uppercase">Professionalization & Upskilling</span>
+                </div>
+                
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] mb-8 tracking-tight">
                     Stop Playing on <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-slate to-white">Survival Mode.</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-slate via-brand-light to-white">Survival Mode.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-brand-mist mb-10 leading-relaxed max-w-2xl">
-                    We aim to prevent the "boom and fizzle" cycle of the esports industry. We build sustainable, industry-best talent systems so your organization can win the long game.
+                
+                <p class="text-lg md:text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl">
+                    The "boom and fizzle" cycle isn't inevitable. We build the sustainable, industry-best talent systems your organization needs to win the long game.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="dictionary.html" class="px-8 py-4 bg-brand-white text-brand-indigo font-bold rounded-md hover:bg-brand-mist transition-all text-center">Explore the Framework</a>
-                    <a href="consultation.html" class="px-8 py-4 border border-brand-slate text-brand-white font-bold rounded-md hover:bg-brand-slate/20 transition-all text-center">Partner With Us</a>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="dictionary.html" class="px-8 py-4 bg-white text-brand-indigo font-bold rounded hover:bg-gray-200 transition-all text-center shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                        Explore the Framework
+                    </a>
+                    <a href="consultation.html" class="glass-button px-8 py-4 text-white font-bold rounded text-center">
+                        Partner With Us
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- THE PROBLEM -->
-    <section class="py-20 bg-brand-dark border-y border-brand-slate/20">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="font-display text-3xl font-bold text-brand-white mb-6">The "Competency Gap" is a Threat.</h2>
-                <p class="text-brand-cool mb-6 leading-relaxed">
-                    Everyone says the industry is in 'survival mode' and uses that as an excuse not to invest in talent. <strong class="text-brand-white">We see it as the very reason you have to.</strong>
-                </p>
-                <p class="text-brand-cool mb-6 leading-relaxed">
-                    Investing in talent creates the capacity to deliver profitable products at scale, at speed, and for sustained periods.
-                </p>
-            </div>
-            <div class="relative h-64 bg-brand-indigo border border-brand-slate/50 rounded-lg flex items-center justify-center">
-                <div class="text-center">
-                    <p class="font-display text-6xl font-bold text-brand-white">3 Years</p>
-                    <p class="text-brand-mist uppercase tracking-widest text-xs mt-2">Average Org Lifespan</p>
-                    <p class="text-brand-slate/50 text-xs mt-4 italic">Let's beat the average.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="py-24">
+    <!-- THE PROBLEM (Visual Cards) -->
+    <section class="py-24 bg-brand-indigo relative">
         <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="font-display text-3xl font-bold text-brand-white mb-4">The Toolkit</h2>
-                <p class="text-brand-mist">We don't just give advice; we build the mature systems you are missing.</p>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">The "Competency Gap" is a Direct Threat to Your P&L.</h2>
+                    <div class="space-y-6 text-lg text-gray-300">
+                        <p>
+                            Everyone says the industry is in 'survival mode' and uses that as an excuse not to invest in talent. <strong class="text-white border-b-2 border-brand-slate">We see it as the very reason you have to.</strong>
+                        </p>
+                        <p>
+                            It’s a classic chicken-and-egg problem. Organizations feel there's no money to invest in proper systems. But the truth is: investing in talent creates the capacity to deliver profitable products at scale.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Statistic Card -->
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-slate to-brand-light rounded-xl blur opacity-30"></div>
+                    <div class="relative glass-panel p-10 rounded-xl text-center">
+                        <p class="font-display text-7xl md:text-8xl font-bold text-white mb-2">3 Years</p>
+                        <div class="h-1 w-24 bg-brand-slate mx-auto my-6"></div>
+                        <p class="text-gray-400 uppercase tracking-widest text-sm font-bold">Average Organization Lifespan</p>
+                        <p class="mt-6 text-emerald-400 text-sm italic font-medium">"Let's beat the average."</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FRAMEWORK & RESEARCH SECTION (New Asset Integration) -->
+    <section id="framework" class="py-24 bg-[#151525] border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">Our Blueprint for the Industry</h2>
+                <p class="text-gray-400">
+                    We don't gatekeep knowledge. We released our foundational research and competency dictionary to map the entire talent landscape of esports.
+                </p>
+            </div>
+
+            <!-- The Framework Image Asset -->
+            <div class="relative max-w-5xl mx-auto mb-16 group">
+                <div class="absolute -inset-2 bg-gradient-to-r from-brand-slate to-transparent rounded-xl blur-xl opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Gaming and Esports Competency Framework" class="relative rounded-xl border border-white/10 shadow-2xl w-full">
+            </div>
+
+            <!-- Download CTA -->
+            <div class="flex justify-center">
+                <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download class="flex items-center gap-4 px-8 py-5 bg-brand-slate hover:bg-brand-light text-white rounded-lg font-bold transition-all shadow-lg group">
+                    <svg class="w-6 h-6 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <span>Download the Full Research PDF</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE TOOLKIT (Services) -->
+    <section id="services" class="py-24 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="bg-brand-dark p-8 rounded-lg border border-brand-slate/20 hover:border-brand-slate hover:-translate-y-1 transition-all duration-300">
-                    <h3 class="font-display text-xl font-bold text-brand-white mb-3">Strategic Design</h3>
-                    <p class="text-brand-cool text-sm leading-relaxed">Organization Design, Workforce Strategy, Skills Mapping, and Job Analysis.</p>
+                <div class="glass-panel p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-12 h-12 bg-brand-slate/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-slate/40 transition text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Strategic Design</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Organization Design, Workforce Strategy, Skills Mapping, and Job Analysis. We align your human capital with your business goals.</p>
                 </div>
+
                 <!-- Card 2 -->
-                <div class="bg-brand-dark p-8 rounded-lg border border-brand-slate/20 hover:border-brand-slate hover:-translate-y-1 transition-all duration-300">
-                    <h3 class="font-display text-xl font-bold text-brand-white mb-3">Process Improvement</h3>
-                    <p class="text-brand-cool text-sm leading-relaxed">We audit and overhaul your existing HR processes (Recruitment, Onboarding, Performance).</p>
+                <div class="glass-panel p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-12 h-12 bg-brand-slate/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-slate/40 transition text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Process Improvement</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">We audit and overhaul your existing HR processes (Recruitment, Onboarding, Performance) to make them effective, scalable, and fair.</p>
                 </div>
+
                 <!-- Card 3 -->
-                <div class="bg-brand-dark p-8 rounded-lg border border-brand-slate/20 hover:border-brand-slate hover:-translate-y-1 transition-all duration-300">
-                    <h3 class="font-display text-xl font-bold text-brand-white mb-3">Training & Development</h3>
-                    <p class="text-brand-cool text-sm leading-relaxed">Bespoke training programs from "Digital Wellness" to "Project Management" for gamers.</p>
+                <div class="glass-panel p-8 rounded-xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-12 h-12 bg-brand-slate/20 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-slate/40 transition text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold text-white mb-3">Training & Development</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Bespoke training programs ranging from "Digital Wellness" to "Project Management," all tailored for the specific context of gaming.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-brand-indigo py-12 border-t border-brand-slate/30">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-brand-slate text-xs">&copy; 2025 Talent Tree Labs. Defining "What Good Looks Like."</p>
+    <footer class="bg-[#151525] py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-8 w-auto mb-4 opacity-80">
+                <p class="text-gray-500 text-sm">Defining "What Good Looks Like" for the Esports Industry.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="dictionary.html" class="text-gray-400 hover:text-white text-sm transition">Competency Dictionary</a>
+                <a href="#" class="text-gray-400 hover:text-white text-sm transition">LinkedIn</a>
+            </div>
         </div>
     </footer>
+
 </body>
 </html>
