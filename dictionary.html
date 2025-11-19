@@ -4,59 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Competency Dictionary | Talent Tree Labs</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: { indigo: '#1e1e34', slate: '#48466D', mist: '#A6A5B8', cool: '#D1D1DB', white: '#F4F4F7', dark: '#151525' }
+                        brand: { 
+                            indigo: '#1e1e34',      
+                            slate: '#48466D',       
+                            light: '#6F6D91',       
+                            surface: '#262640',     
+                            white: '#F4F4F7', 
+                        }
                     },
-                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Oxanium', 'sans-serif'] }
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'], 
+                        display: ['Oxanium', 'sans-serif'] 
+                    },
+                    backgroundImage: {
+                        'glow-gradient': 'radial-gradient(circle at 50% 0%, rgba(72, 70, 109, 0.2) 0%, rgba(30, 30, 52, 0) 70%)',
+                    }
                 }
             }
         }
     </script>
-    <style>body { background-color: #1e1e34; color: #D1D1DB; }</style>
+
+    <style>
+        body { 
+            background-color: #1e1e34; 
+            color: #E2E8F0; 
+        }
+        
+        .bg-tech-grid {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(30, 30, 52, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(72, 70, 109, 0.3);
+            border-color: rgba(111, 109, 145, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #1e1e34; }
+        ::-webkit-scrollbar-thumb { background: #48466D; border-radius: 3px; }
+    </style>
 </head>
-<body class="flex flex-col h-screen antialiased font-sans">
+<body class="flex flex-col h-screen antialiased font-sans bg-tech-grid overflow-hidden">
 
     <!-- NAV -->
-    <nav class="bg-brand-indigo border-b border-brand-slate/30 flex-shrink-0 z-50">
+    <nav class="glass-panel border-b border-white/5 flex-shrink-0 z-50 relative">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="font-display font-bold text-xl text-brand-white hover:text-brand-mist transition">TALENT TREE LABS</a>
+             <a href="index.html" class="block hover:opacity-80 transition">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-10 w-auto"> 
+            </a>
             <div class="flex items-center space-x-6">
-                <a href="index.html" class="text-sm text-brand-mist hover:text-white">Home</a>
-                <a href="consultation.html" class="px-4 py-2 bg-brand-slate text-white text-xs font-bold rounded hover:bg-brand-slate/80">Book Consultation</a>
+                <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Back to Home</a>
+                <a href="consultation.html" class="px-4 py-2 bg-brand-slate hover:bg-brand-light text-white text-xs font-bold rounded transition-all shadow-lg">Book Consultation</a>
             </div>
         </div>
     </nav>
 
     <!-- MAIN APP LAYOUT -->
-    <div class="flex flex-1 overflow-hidden">
+    <div class="flex flex-1 overflow-hidden relative">
+        <!-- Ambient Glow -->
+        <div class="absolute top-0 left-0 w-full h-full bg-glow-gradient pointer-events-none"></div>
         
         <!-- SIDEBAR: DOMAINS -->
-        <aside class="w-80 bg-brand-dark border-r border-brand-slate/20 flex-shrink-0 overflow-y-auto hidden md:block">
+        <aside class="w-80 glass-panel border-r border-white/5 flex-shrink-0 overflow-y-auto hidden md:block relative z-10">
             <div class="p-6">
-                <h3 class="text-xs font-bold text-brand-slate uppercase tracking-widest mb-4">Domains</h3>
-                <div id="domain-list" class="space-y-1">
+                <h3 class="text-xs font-bold text-brand-light uppercase tracking-widest mb-6 pl-2">Competency Domains</h3>
+                <div id="domain-list" class="space-y-2">
                     <!-- Domains injected here via JS -->
                 </div>
             </div>
         </aside>
 
         <!-- CONTENT: CLUSTERS & COMPETENCIES -->
-        <main class="flex-1 overflow-y-auto bg-brand-indigo p-6 md:p-12 relative">
-            <div class="max-w-5xl mx-auto">
-                <header class="mb-10 pb-6 border-b border-brand-slate/20">
-                    <h1 id="page-title" class="font-display text-3xl font-bold text-brand-white mb-2">Select a Domain</h1>
-                    <p class="text-brand-mist text-sm">Explore the specific skills and behaviors required for this sector.</p>
+        <main class="flex-1 overflow-y-auto p-6 md:p-12 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <header class="mb-12 pb-6 border-b border-white/10">
+                    <h1 id="page-title" class="font-display text-4xl font-bold text-white mb-3">Select a Domain</h1>
+                    <p class="text-gray-400 text-lg">Explore the specific skills and behaviors required for this sector.</p>
                 </header>
                 
-                <div id="content-area" class="space-y-12 pb-20">
+                <div id="content-area" class="space-y-16 pb-24">
                     <!-- Clusters injected here -->
-                    <p class="text-brand-slate/50 italic">Please select a domain from the sidebar to begin.</p>
+                    <div class="text-center py-20 opacity-50">
+                        <p class="font-display text-xl text-gray-500">Please select a domain from the sidebar to begin.</p>
+                    </div>
                 </div>
             </div>
         </main>
@@ -65,15 +128,19 @@
 
     <!-- MODAL (Hidden by default) -->
     <div id="modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-[#0f0f1a]/90 backdrop-blur-md" onclick="closeModal()"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
-            <div class="bg-brand-indigo border border-brand-slate w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl relative">
-                <div class="p-6 md:p-10">
-                    <button onclick="closeModal()" class="absolute top-4 right-4 text-brand-mist hover:text-white">✕</button>
-                    <h2 id="modal-title" class="font-display text-2xl font-bold text-brand-white mb-4">Title</h2>
-                    <div class="bg-brand-dark/50 p-4 rounded border border-brand-slate/20 mb-8">
-                        <p id="modal-def" class="text-brand-white italic font-serif text-lg leading-relaxed">Definition...</p>
+            <div class="glass-panel w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl relative bg-[#1e1e34]">
+                <div class="p-8 md:p-12">
+                    <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition text-xl">✕</button>
+                    
+                    <h2 id="modal-title" class="font-display text-3xl font-bold text-white mb-6 pr-8">Title</h2>
+                    
+                    <div class="bg-brand-slate/10 p-6 rounded-lg border border-brand-slate/20 mb-10">
+                        <h4 class="text-xs font-bold text-brand-light uppercase tracking-widest mb-2">Definition</h4>
+                        <p id="modal-def" class="text-gray-200 italic font-serif text-lg leading-relaxed">Definition...</p>
                     </div>
+                    
                     <div id="modal-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Levels injected here -->
                     </div>
@@ -96,7 +163,7 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             if (typeof COMPETENCY_DATA === 'undefined') {
-                contentArea.innerHTML = '<p class="text-red-500">Error: competencies.js not found. Ensure files are in the same folder.</p>';
+                contentArea.innerHTML = '<p class="text-red-400 font-mono">Error: competencies.js not found. Ensure files are in the same folder.</p>';
                 return;
             }
             renderSidebar();
@@ -106,43 +173,57 @@
         });
 
         function renderSidebar() {
-            Object.keys(COMPETENCY_DATA).forEach(domain => {
+            Object.keys(COMPETENCY_DATA).forEach((domain, index) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left px-4 py-3 rounded text-sm font-medium text-brand-mist hover:bg-brand-slate/20 hover:text-brand-white transition-colors mb-1";
+                // Active state logic would go here for full app, using simple styling for now
+                btn.className = "w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white transition-all duration-200";
                 btn.innerText = domain;
-                btn.onclick = () => loadDomain(domain);
+                btn.onclick = (e) => {
+                    // Visual active state toggle
+                    document.querySelectorAll('#domain-list button').forEach(b => b.classList.remove('bg-white/10', 'text-white'));
+                    e.target.classList.add('bg-white/10', 'text-white');
+                    loadDomain(domain);
+                };
                 domainList.appendChild(btn);
+                
+                // Set first as active initially
+                if (index === 0) btn.classList.add('bg-white/10', 'text-white');
             });
         }
 
         function loadDomain(domain) {
             pageTitle.innerText = domain;
-            contentArea.innerHTML = ''; // Clear previous
+            contentArea.innerHTML = ''; 
             
             const clusters = COMPETENCY_DATA[domain];
             
             Object.keys(clusters).forEach(clusterName => {
-                // Create Cluster Section
                 const section = document.createElement('section');
                 section.className = "animate-fade-in";
                 
                 const h3 = document.createElement('h3');
-                h3.className = "font-display text-xl font-bold text-brand-slate mb-6 flex items-center gap-2";
-                h3.innerHTML = `<span class="w-1 h-6 bg-brand-slate rounded"></span>${clusterName}`;
+                h3.className = "font-display text-2xl font-bold text-white mb-8 flex items-center gap-3 border-l-4 border-brand-slate pl-4";
+                h3.innerText = clusterName;
                 section.appendChild(h3);
 
                 const grid = document.createElement('div');
-                grid.className = "grid md:grid-cols-2 gap-4";
+                grid.className = "grid md:grid-cols-2 gap-5";
 
                 const comps = clusters[clusterName];
                 comps.forEach(comp => {
                     const card = document.createElement('div');
                     const hasRubric = comp.rubric !== undefined;
-                    card.className = `p-5 rounded bg-brand-dark/40 border border-brand-slate/10 transition-all duration-200 ${hasRubric ? 'hover:border-brand-slate hover:-translate-y-1 cursor-pointer group' : 'opacity-50'}`;
+                    card.className = `glass-card p-6 rounded-lg relative group ${hasRubric ? 'cursor-pointer' : 'opacity-60 cursor-default'}`;
                     
-                    let html = `<h4 class="font-bold text-brand-white text-sm mb-1">${comp.title}</h4>`;
-                    if (hasRubric) html += `<p class="text-xs text-brand-mist flex items-center gap-2 mt-2"><span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> Click to view rubric</p>`;
-                    else html += `<p class="text-xs text-brand-slate/50 mt-2 italic">Definition pending</p>`;
+                    let html = `<h4 class="font-bold text-gray-100 text-base mb-2 group-hover:text-brand-white transition">${comp.title}</h4>`;
+                    
+                    if (hasRubric) {
+                        html += `<div class="flex items-center gap-2 mt-4">
+                                    <span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/30">Rubric Available</span>
+                                 </div>`;
+                    } else {
+                        html += `<p class="text-xs text-gray-500 mt-3 italic">Definition pending</p>`;
+                    }
                     
                     card.innerHTML = html;
                     if (hasRubric) card.onclick = () => openModal(comp);
@@ -164,14 +245,15 @@
             if (comp.rubric) {
                 Object.keys(comp.rubric).forEach((level, index) => {
                     const col = document.createElement('div');
-                    const colors = ['text-brand-mist', 'text-blue-400', 'text-purple-400', 'text-brand-slate'];
+                    const headerColors = ['text-gray-400', 'text-blue-400', 'text-indigo-400', 'text-purple-400'];
                     
-                    let html = `<h5 class="font-bold ${colors[index] || 'text-white'} border-b border-brand-slate/20 pb-2 mb-3 text-sm uppercase tracking-wider">${level}</h5>`;
-                    html += `<ul class="space-y-2">`;
+                    let html = `<div class="p-5 rounded-lg bg-white/5 border border-white/5 h-full hover:bg-white/10 transition duration-300">`;
+                    html += `<h5 class="font-bold ${headerColors[index]} border-b border-white/10 pb-3 mb-4 text-sm uppercase tracking-widest">${level}</h5>`;
+                    html += `<ul class="space-y-3">`;
                     comp.rubric[level].forEach(item => {
-                        html += `<li class="text-xs text-brand-cool leading-relaxed flex gap-2"><span class="text-brand-slate opacity-50">•</span> ${item}</li>`;
+                        html += `<li class="text-sm text-gray-300 leading-relaxed flex gap-3"><span class="text-brand-slate mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-slate flex-shrink-0"></span> <span>${item}</span></li>`;
                     });
-                    html += `</ul>`;
+                    html += `</ul></div>`;
                     
                     col.innerHTML = html;
                     grid.appendChild(col);
