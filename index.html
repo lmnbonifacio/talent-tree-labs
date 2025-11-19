@@ -48,18 +48,19 @@
 
     <style>
         body { 
-            background-color: #0B0B15; 
+            /* FIX: Re-added solid background color here. 
+               This acts as the base layer so the mask on the grid doesn't fade to white. */
+            background-color: #0B0B15;
             color: #E2E8F0; 
             overflow-x: hidden; 
         }
         
-        /* MOBILE FIX: Removed 'background-attachment: fixed' here. 
-           We now achieve the fixed effect via the container div below. */
         .bg-tech-grid {
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
+            /* This mask was fading out the solid color when they were on the same div */
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
         }
 
@@ -68,6 +69,13 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-panel-mobile {
+            background: rgba(11, 11, 21, 0.95); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .glass-card {
@@ -98,16 +106,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
     </style>
 </head>
 <body class="antialiased font-sans selection:bg-brand-accent selection:text-white">
 
-    <!-- MOBILE FIX: The Grid Curtain.
-         This div sits behind everything (z-[-1]) and is fixed position.
-         Mobile browsers handle this much better than background-attachment on body. -->
+    <!-- FIXED GRID CONTAINER
+         FIX: Removed bg-[#0B0B15] from here. 
+         This div is now strictly for the grid lines overlay. 
+         The solid color comes from the body tag. -->
     <div class="fixed inset-0 z-[-1] bg-tech-grid pointer-events-none w-full h-full"></div>
 
     <!-- NAVIGATION -->
@@ -136,12 +142,12 @@
                 </button>
             </div>
 
-            <!-- MOBILE DROPDOWN (Absolute positioning) -->
-            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-panel border-t border-white/10 flex-col p-6 space-y-4 md:hidden animate-fadeIn">
-                <a href="index.html" class="block text-base font-medium text-white">Talent Tree Labs</a>
-                <a href="dictionary.html" class="block text-base font-medium text-gray-400 hover:text-white">Competency Dictionary</a>
-                <a href="consultants.html" class="block text-base font-medium text-gray-400 hover:text-white">Our Consultants</a>
-                <a href="consultation.html" class="block w-full text-center px-5 py-3 bg-brand-slate text-white font-bold rounded">
+            <!-- MOBILE DROPDOWN -->
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-panel-mobile shadow-2xl flex-col p-6 space-y-4 md:hidden animate-fadeIn">
+                <a href="index.html" class="block text-base font-medium text-white border-b border-white/5 pb-2">Talent Tree Labs</a>
+                <a href="dictionary.html" class="block text-base font-medium text-gray-400 hover:text-white border-b border-white/5 pb-2">Competency Dictionary</a>
+                <a href="consultants.html" class="block text-base font-medium text-gray-400 hover:text-white border-b border-white/5 pb-2">Our Consultants</a>
+                <a href="consultation.html" class="block w-full text-center px-5 py-3 bg-brand-slate text-white font-bold rounded shadow-lg mt-4">
                     Book Consultation
                 </a>
             </div>
@@ -149,7 +155,6 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <!-- MOBILE FIX: Adjusted padding (pt-28) for mobile, keeps pt-48 for desktop -->
     <section class="relative pt-28 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
         <!-- Animated Blobs -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
@@ -164,7 +169,6 @@
                     <span class="text-xs font-display font-bold text-gray-300 tracking-widest uppercase">Professionalization & Upskilling</span>
                 </div>
                 
-                <!-- MOBILE FIX: Scaled text down to 4xl on mobile to prevent breaking words -->
                 <h1 class="font-display text-4xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.95] mb-8 tracking-tight">
                     Stop Playing on <br>
                     <span class="text-gradient-brand">Survival Mode.</span>
@@ -188,7 +192,6 @@
     </section>
 
     <!-- THE TOOLKIT (Services) -->
-    <!-- MOBILE FIX: Reduced top padding to py-12 on mobile -->
     <section id="services" class="py-12 md:py-20 relative z-10">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-12 fade-on-scroll">
@@ -234,7 +237,6 @@
     </section>
 
     <!-- THE PROBLEM -->
-    <!-- MOBILE FIX: Adjusted vertical padding -->
     <section class="py-12 md:py-24 bg-brand-indigo relative overflow-hidden">
          <div class="container mx-auto px-6 relative z-10">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -276,7 +278,6 @@
     </section>
 
     <!-- FRAMEWORK & RESEARCH SECTION -->
-    <!-- MOBILE FIX: Adjusted padding and Card Readability -->
     <section id="framework" class="py-12 md:py-24 border-t border-white/5 fade-on-scroll">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -293,10 +294,6 @@
                     <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download class="block">
                         <div class="glass-panel rounded-xl overflow-hidden border border-white/10 transition duration-300 group-hover:border-brand-slate">
                             <!-- Image Container -->
-                            <!-- MOBILE FIX: 
-                                 1. Reduced height to h-56 on mobile.
-                                 2. Changed opacity: Always 100 on mobile, 80 on desktop (group-hover:100).
-                            -->
                             <div class="relative h-56 md:h-64 bg-[#1A1A2E] overflow-hidden">
                                 <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Research Framework" class="w-full h-full object-cover opacity-100 md:opacity-80 md:group-hover:opacity-100 md:group-hover:scale-105 transition duration-500">
                                 
