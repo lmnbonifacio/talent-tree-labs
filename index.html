@@ -109,7 +109,6 @@
     <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="index.html" class="block hover:opacity-80 transition">
-                <!-- Increased logo size here -->
                 <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-16 w-auto"> 
             </a>
             <div class="hidden md:flex items-center space-x-8">
@@ -146,12 +145,15 @@
                     We aim to break the "boom and doom" cycle of the esports industry. We leverage best-in-class talent systems so your organization can win the long game.
                 </p>
                 
+                <!-- UPDATED BUTTON LOGIC -->
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="dictionary.html" class="px-8 py-4 bg-white text-brand-indigo font-bold rounded overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                        Explore the Framework
+                    <!-- Primary: Book Consultation -->
+                    <a href="consultation.html" class="px-8 py-4 bg-white text-brand-indigo font-bold rounded overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                        Book Consultation
                     </a>
-                    <a href="consultation.html" class="px-8 py-4 text-gray-300 font-bold rounded hover:text-white transition flex items-center gap-2 group">
-                        <span>Partner With Us</span>
+                    <!-- Secondary: See the Dictionary -->
+                    <a href="dictionary.html" class="px-8 py-4 text-gray-300 font-bold rounded hover:text-white transition flex items-center gap-2 group">
+                        <span>Explore the Dictionary</span>
                         <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                     </a>
                 </div>
@@ -246,29 +248,64 @@
         </div>
     </section>
 
-    <!-- FRAMEWORK & RESEARCH -->
+    <!-- FRAMEWORK & RESEARCH SECTION (Split Logic) -->
     <section id="framework" class="py-24 border-t border-white/5 fade-on-scroll">
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">Our Blueprint for the Industry</h2>
                 <p class="text-gray-400">
-                    Read our foundational research and competency dictionary to see how we mapped the entire talent landscape of esports.
+                    We don't gatekeep knowledge. Access our foundational research or jump straight into the interactive competency dictionary.
                 </p>
             </div>
 
-            <div class="relative max-w-5xl mx-auto mb-16 group cursor-pointer" onclick="window.location.href='dictionary.html'">
-                <div class="absolute -inset-1 bg-brand-slate/20 rounded-xl blur-xl opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Gaming and Esports Competency Framework" class="relative rounded-xl border border-white/10 shadow-2xl w-full bg-[#1A1A2E]">
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 bg-black/50 rounded-xl backdrop-blur-sm">
-                    <span class="text-white font-display font-bold text-xl border border-white px-6 py-3 rounded-full">View Interactive Framework</span>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                
+                <!-- LEFT: The Research (Download PDF) -->
+                <div class="relative group cursor-pointer">
+                    <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download class="block">
+                        <div class="glass-panel rounded-xl overflow-hidden border border-white/10 transition duration-300 group-hover:border-brand-slate">
+                            <!-- Image Container -->
+                            <div class="relative h-64 bg-[#1A1A2E] overflow-hidden">
+                                <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Research Framework" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B15] to-transparent opacity-90"></div>
+                                <!-- Icon -->
+                                <div class="absolute bottom-6 left-6">
+                                    <div class="w-12 h-12 rounded-full bg-brand-slate/30 flex items-center justify-center text-white mb-2 backdrop-blur-sm">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                    </div>
+                                    <h3 class="font-display text-2xl font-bold text-white">The Research</h3>
+                                    <p class="text-gray-400 text-sm">Download the PDF Report</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hover Effect Overlay -->
+                        <div class="absolute inset-0 border-2 border-brand-slate rounded-xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
+                    </a>
                 </div>
-            </div>
 
-            <div class="flex justify-center">
-                <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download class="flex items-center gap-4 px-8 py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-lg font-bold transition-all shadow-lg group">
-                    <svg class="w-6 h-6 text-brand-accent group-hover:translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                    <span>Download the Full Research PDF</span>
-                </a>
+                <!-- RIGHT: The Tool (Interactive App) -->
+                <div class="relative group cursor-pointer">
+                    <a href="dictionary.html" class="block">
+                        <div class="glass-panel rounded-xl overflow-hidden border border-white/10 transition duration-300 group-hover:border-brand-accent">
+                            <!-- Image Container -->
+                            <div class="relative h-64 bg-[#1A1A2E] overflow-hidden">
+                                <img src="assets/image_76c565.jpg" alt="Interactive Dictionary UI" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0B0B15] to-transparent opacity-90"></div>
+                                <!-- Icon -->
+                                <div class="absolute bottom-6 left-6">
+                                    <div class="w-12 h-12 rounded-full bg-brand-accent/30 flex items-center justify-center text-white mb-2 backdrop-blur-sm">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                    <h3 class="font-display text-2xl font-bold text-white">The Interactive Tool</h3>
+                                    <p class="text-gray-400 text-sm">Launch Competency Dictionary</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Hover Effect Overlay -->
+                        <div class="absolute inset-0 border-2 border-brand-accent rounded-xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
+                    </a>
+                </div>
+
             </div>
         </div>
     </section>
