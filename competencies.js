@@ -1,7 +1,7 @@
 /**
  * @file competencies.js
- * @description This file contains all the competency data for the Talent Tree Labs dictionary.
- * It is designed to be loaded by index.html.
+ * @description The source of truth for the Talent Tree Labs Competency Framework.
+ * @version 2.0.0
  */
 
 const COMPETENCY_DATA = {
