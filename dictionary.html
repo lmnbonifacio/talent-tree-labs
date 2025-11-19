@@ -20,10 +20,11 @@
                 extend: {
                     colors: {
                         brand: { 
-                            indigo: '#1e1e34',      
+                            indigo: '#0B0B15',      
                             slate: '#48466D',       
-                            light: '#6F6D91',       
-                            surface: '#262640',     
+                            light: '#6F6D91',
+                            accent: '#7C3AED',
+                            surface: '#1A1A2E',     
                             white: '#F4F4F7', 
                         }
                     },
@@ -41,7 +42,7 @@
 
     <style>
         body { 
-            background-color: #1e1e34; 
+            background-color: #0B0B15; 
             color: #E2E8F0; 
         }
         
@@ -49,7 +50,9 @@
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background-size: 50px 50px;
+            background-attachment: fixed; /* FIX: Keeps grid static while scrolling */
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 90%, rgba(0,0,0,0));
         }
 
         .glass-panel {
@@ -60,20 +63,20 @@
         }
 
         .glass-card {
-            background: rgba(30, 30, 52, 0.6);
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
         }
         .glass-card:hover {
-            background: rgba(72, 70, 109, 0.3);
-            border-color: rgba(111, 109, 145, 0.5);
+            background: rgba(72, 70, 109, 0.1);
+            border-color: rgba(124, 58, 237, 0.5);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(124, 58, 237, 0.2);
         }
         
         /* Scrollbar Styling */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #1e1e34; }
+        ::-webkit-scrollbar-track { background: #0B0B15; }
         ::-webkit-scrollbar-thumb { background: #48466D; border-radius: 3px; }
     </style>
 </head>
@@ -85,9 +88,9 @@
              <a href="index.html" class="block hover:opacity-80 transition">
                 <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-10 w-auto"> 
             </a>
-            <div class="flex items-center space-x-6">
+            <div class="hidden md:flex items-center space-x-6">
                 <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Back to Home</a>
-                <a href="consultation.html" class="px-4 py-2 bg-brand-slate hover:bg-brand-light text-white text-xs font-bold rounded transition-all shadow-lg">Book Consultation</a>
+                <a href="consultation.html" class="px-4 py-2 bg-brand-slate hover:bg-brand-accent text-white text-xs font-bold rounded transition-all shadow-lg">Book Consultation</a>
             </div>
         </div>
     </nav>
@@ -100,7 +103,7 @@
         <!-- SIDEBAR: DOMAINS -->
         <aside class="w-80 glass-panel border-r border-white/5 flex-shrink-0 overflow-y-auto hidden md:block relative z-10">
             <div class="p-6">
-                <h3 class="text-xs font-bold text-brand-light uppercase tracking-widest mb-6 pl-2">Competency Domains</h3>
+                <h3 class="text-xs font-bold text-brand-accent uppercase tracking-widest mb-6 pl-2">Competency Domains</h3>
                 <div id="domain-list" class="space-y-2">
                     <!-- Domains injected here via JS -->
                 </div>
@@ -128,16 +131,16 @@
 
     <!-- MODAL (Hidden by default) -->
     <div id="modal" class="fixed inset-0 z-[100] hidden">
-        <div class="absolute inset-0 bg-[#0f0f1a]/90 backdrop-blur-md" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-[#0B0B15]/90 backdrop-blur-md" onclick="closeModal()"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
-            <div class="glass-panel w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl relative bg-[#1e1e34]">
+            <div class="glass-panel w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl relative bg-[#0B0B15] border border-white/10">
                 <div class="p-8 md:p-12">
                     <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition text-xl">✕</button>
                     
                     <h2 id="modal-title" class="font-display text-3xl font-bold text-white mb-6 pr-8">Title</h2>
                     
                     <div class="bg-brand-slate/10 p-6 rounded-lg border border-brand-slate/20 mb-10">
-                        <h4 class="text-xs font-bold text-brand-light uppercase tracking-widest mb-2">Definition</h4>
+                        <h4 class="text-xs font-bold text-brand-accent uppercase tracking-widest mb-2">Definition</h4>
                         <p id="modal-def" class="text-gray-200 italic font-serif text-lg leading-relaxed">Definition...</p>
                     </div>
                     
@@ -175,19 +178,18 @@
         function renderSidebar() {
             Object.keys(COMPETENCY_DATA).forEach((domain, index) => {
                 const btn = document.createElement('button');
-                // Active state logic would go here for full app, using simple styling for now
                 btn.className = "w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white transition-all duration-200";
                 btn.innerText = domain;
                 btn.onclick = (e) => {
                     // Visual active state toggle
-                    document.querySelectorAll('#domain-list button').forEach(b => b.classList.remove('bg-white/10', 'text-white'));
-                    e.target.classList.add('bg-white/10', 'text-white');
+                    document.querySelectorAll('#domain-list button').forEach(b => b.classList.remove('bg-white/10', 'text-white', 'border-l-2', 'border-brand-accent'));
+                    e.target.classList.add('bg-white/10', 'text-white', 'border-l-2', 'border-brand-accent');
                     loadDomain(domain);
                 };
                 domainList.appendChild(btn);
                 
                 // Set first as active initially
-                if (index === 0) btn.classList.add('bg-white/10', 'text-white');
+                if (index === 0) btn.classList.add('bg-white/10', 'text-white', 'border-l-2', 'border-brand-accent');
             });
         }
 
@@ -215,11 +217,11 @@
                     const hasRubric = comp.rubric !== undefined;
                     card.className = `glass-card p-6 rounded-lg relative group ${hasRubric ? 'cursor-pointer' : 'opacity-60 cursor-default'}`;
                     
-                    let html = `<h4 class="font-bold text-gray-100 text-base mb-2 group-hover:text-brand-white transition">${comp.title}</h4>`;
+                    let html = `<h4 class="font-bold text-gray-100 text-base mb-2 group-hover:text-brand-accent transition">${comp.title}</h4>`;
                     
                     if (hasRubric) {
                         html += `<div class="flex items-center gap-2 mt-4">
-                                    <span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/30">Rubric Available</span>
+                                    <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">Rubric Available</span>
                                  </div>`;
                     } else {
                         html += `<p class="text-xs text-gray-500 mt-3 italic">Definition pending</p>`;
