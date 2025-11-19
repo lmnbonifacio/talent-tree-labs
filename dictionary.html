@@ -110,21 +110,21 @@
 </head>
 <body class="antialiased font-sans bg-tech-grid relative min-h-screen flex flex-col">
 
-    <!-- NAV (Fixed) -->
-<nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
-    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-        <a href="index.html" class="block hover:opacity-80 transition">
-            <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-16 w-auto"> 
-        </a>
-        <div class="hidden md:flex items-center space-x-8">
-            <a href="dictionary.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Competency Dictionary</a>
-            <a href="consultants.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Our Consultants</a>
-            <a href="consultation.html" class="px-5 py-2 bg-brand-slate hover:bg-brand-accent text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(72,70,109,0.4)] hover:shadow-[0_0_25px_rgba(124,58,237,0.6)]">
-                Book Consultation
+    <!-- NAV (Standardized) -->
+    <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="block hover:opacity-80 transition">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-16 w-auto"> 
             </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="dictionary.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Competency Dictionary</a>
+                <a href="consultants.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Our Consultants</a>
+                <a href="consultation.html" class="px-5 py-2 bg-brand-slate hover:bg-brand-accent text-white text-sm font-bold rounded transition-all shadow-[0_0_15px_rgba(72,70,109,0.4)] hover:shadow-[0_0_25px_rgba(124,58,237,0.6)]">
+                    Book Consultation
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- TOP EXPLAINER (Full Width, Below Nav) -->
     <header class="pt-32 pb-12 relative z-10 border-b border-white/5">
@@ -210,7 +210,7 @@
                     <h2 id="modal-title" class="font-display text-3xl font-bold text-white mb-6 pr-8">Title</h2>
                     
                     <div class="bg-brand-slate/10 p-6 rounded-lg border border-brand-slate/20 mb-10">
-                        <h4 class="text-xs font-bold text-brand-accent uppercase tracking-widest mb-2">Definition</h4>
+                        <h4 class="text-xs font-bold text-brand-accent uppercase tracking-wider mb-2">Definition</h4>
                         <p id="modal-def" class="text-gray-200 italic font-serif text-lg leading-relaxed">Definition...</p>
                     </div>
                     
@@ -286,114 +286,84 @@
         }
 
         function loadDomain(domain) {
-    pageTitle.innerText = domain;
-    contentArea.innerHTML = ''; 
-    
-    const clusters = COMPETENCY_DATA[domain];
-    
-    // --- NEW SORTING LOGIC START ---
-    // Convert to array and sort: Clusters with at least one rubric go first
-    const sortedClusters = Object.entries(clusters).sort((a, b) => {
-        const clusterA_Competencies = a[1];
-        const clusterB_Competencies = b[1];
-        
-        const aHasRubric = clusterA_Competencies.some(comp => comp.rubric !== undefined);
-        const bHasRubric = clusterB_Competencies.some(comp => comp.rubric !== undefined);
-
-        // If B has rubric and A doesn't, B comes first (return 1)
-        if (bHasRubric && !aHasRubric) return 1;
-        // If A has rubric and B doesn't, A comes first (return -1)
-        if (aHasRubric && !bHasRubric) return -1;
-        return 0; // Otherwise, keep original order
-    });
-    // --- NEW SORTING LOGIC END ---
-
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const dynamicObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, observerOptions);
-
-    const listWrapper = document.createElement('div');
-    listWrapper.className = "space-y-4"; 
-
-    // Iterate through the SORTED array
-    sortedClusters.forEach(([clusterName, comps], index) => {
-        // ... (The rest of the code inside this loop remains the same, 
-        // just ensure you use 'clusterName' and 'comps' variables correctly)
-        
-        // Accordion Item Container
-        const item = document.createElement('div');
-        item.className = "fade-on-scroll border border-white/10 rounded-xl overflow-hidden bg-white/5 transition-all duration-300"; 
-        
-        // 1. The Header (Clickable)
-        const headerBtn = document.createElement('button');
-        headerBtn.className = "w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors group select-none";
-        headerBtn.innerHTML = `
-            <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-brand-accent transition-colors border-l-4 border-brand-slate pl-4">${clusterName}</h3>
-            <span class="transform transition-transform duration-300 text-gray-400 group-hover:text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </span>
-        `;
-
-        // 2. The Content (Hidden by default)
-        const contentContainer = document.createElement('div');
-        contentContainer.className = "hidden bg-black/20 p-6 border-t border-white/5";
-        
-        const grid = document.createElement('div');
-        grid.className = "grid md:grid-cols-2 gap-5";
-
-        // 3. The Cards (Using the 'comps' variable from our sorted entry)
-        comps.forEach(comp => {
-            const card = document.createElement('div');
-            const hasRubric = comp.rubric !== undefined;
-            card.className = `glass-card p-6 rounded-lg relative group ${hasRubric ? 'cursor-pointer' : 'opacity-60 cursor-default'}`;
+            pageTitle.innerText = domain;
+            contentArea.innerHTML = ''; 
             
-            let html = `<h4 class="font-bold text-gray-100 text-base mb-2 group-hover:text-brand-accent transition">${comp.title}</h4>`;
+            const clusters = COMPETENCY_DATA[domain];
             
-            if (hasRubric) {
-                html += `<div class="flex items-center gap-2 mt-4">
-                            <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">Rubric Available</span>
-                         </div>`;
-            } else {
-                html += `<p class="text-xs text-gray-500 mt-3 italic">Definition pending</p>`;
-            }
+            // --- NEW SORTING LOGIC START ---
+            // Convert to array and sort: Clusters with at least one rubric go first
+            const sortedClusters = Object.entries(clusters).sort((a, b) => {
+                const clusterA_Competencies = a[1];
+                const clusterB_Competencies = b[1];
+                
+                const aHasRubric = clusterA_Competencies.some(comp => comp.rubric !== undefined);
+                const bHasRubric = clusterB_Competencies.some(comp => comp.rubric !== undefined);
+
+                // If B has rubric and A doesn't, B comes first (return 1)
+                if (bHasRubric && !aHasRubric) return 1;
+                // If A has rubric and B doesn't, A comes first (return -1)
+                if (aHasRubric && !bHasRubric) return -1;
+                return 0; // Otherwise, keep original order
+            });
+            // --- NEW SORTING LOGIC END ---
             
-            card.innerHTML = html;
-            if (hasRubric) card.onclick = (e) => { e.stopPropagation(); openModal(comp); };
-            grid.appendChild(card);
-        });
+            // Observer for the new dynamic items
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const dynamicObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, observerOptions);
 
-        contentContainer.appendChild(grid);
-        
-        // Toggle Logic
-        headerBtn.onclick = () => {
-            const isHidden = contentContainer.classList.contains('hidden');
-            const icon = headerBtn.querySelector('svg');
-            
-            if (isHidden) {
-                contentContainer.classList.remove('hidden');
-                contentContainer.classList.add('animate-fadeIn');
-                icon.style.transform = 'rotate(180deg)';
-                headerBtn.classList.add('bg-white/5'); 
-            } else {
-                contentContainer.classList.add('hidden');
-                contentContainer.classList.remove('animate-fadeIn');
-                icon.style.transform = 'rotate(0deg)';
-                headerBtn.classList.remove('bg-white/5');
-            }
-        };
+            // Create Container for Accordion Items
+            const listWrapper = document.createElement('div');
+            listWrapper.className = "space-y-4"; 
 
-        item.appendChild(headerBtn);
-        item.appendChild(contentContainer);
-        listWrapper.appendChild(item);
+            sortedClusters.forEach(([clusterName, comps], index) => {
+                // Accordion Item Container
+                const item = document.createElement('div');
+                item.className = "fade-on-scroll border border-white/10 rounded-xl overflow-hidden bg-white/5 transition-all duration-300"; 
+                
+                // 1. The Header (Clickable)
+                const headerBtn = document.createElement('button');
+                headerBtn.className = "w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors group select-none";
+                headerBtn.innerHTML = `
+                    <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-brand-accent transition-colors border-l-4 border-brand-slate pl-4">${clusterName}</h3>
+                    <span class="transform transition-transform duration-300 text-gray-400 group-hover:text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </span>
+                `;
 
-        dynamicObserver.observe(item);
-    });
+                // 2. The Content (Hidden by default)
+                const contentContainer = document.createElement('div');
+                contentContainer.className = "hidden bg-black/20 p-6 border-t border-white/5";
+                
+                const grid = document.createElement('div');
+                grid.className = "grid md:grid-cols-2 gap-5";
 
-    contentArea.appendChild(listWrapper);
-}
+                // 3. The Cards
+                comps.forEach(comp => {
+                    const card = document.createElement('div');
+                    const hasRubric = comp.rubric !== undefined;
+                    card.className = `glass-card p-6 rounded-lg relative group ${hasRubric ? 'cursor-pointer' : 'opacity-60 cursor-default'}`;
+                    
+                    let html = `<h4 class="font-bold text-gray-100 text-base mb-2 group-hover:text-brand-accent transition">${comp.title}</h4>`;
+                    
+                    if (hasRubric) {
+                        html += `<div class="flex items-center gap-2 mt-4">
+                                    <span class="px-2 py-1 rounded bg-emerald-500/10 text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">Rubric Available</span>
+                                 </div>`;
+                    } else {
+                        html += `<p class="text-xs text-gray-500 mt-3 italic">Definition pending</p>`;
+                    }
+                    
+                    card.innerHTML = html;
+                    if (hasRubric) card.onclick = (e) => { e.stopPropagation(); openModal(comp); }; // Stop prop so we don't toggle accordion
+                    grid.appendChild(card);
+                });
+
+                contentContainer.appendChild(grid);
                 
                 // Toggle Logic
                 headerBtn.onclick = () => {
