@@ -43,19 +43,29 @@
             background-color: #0B0B15; 
             color: #E2E8F0; 
         }
+        
+        /* FIXED GRID LOGIC */
         .bg-tech-grid {
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
-            background-attachment: fixed; 
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 90%, rgba(0,0,0,0));
         }
+        
         .glass-panel {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Mobile Menu Glass */
+        .glass-panel-mobile {
+            background: rgba(11, 11, 21, 0.95); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Scroll Animation Logic */
@@ -70,17 +80,22 @@
         }
     </style>
 </head>
-<body class="antialiased font-sans min-h-screen flex flex-col bg-tech-grid overflow-x-hidden relative">
+<body class="antialiased font-sans min-h-screen flex flex-col overflow-x-hidden relative">
 
-    <!-- Ambient Glow -->
-    <div class="absolute top-0 left-0 w-full h-full bg-glow-gradient pointer-events-none fixed"></div>
+    <!-- FIXED GRID LAYER -->
+    <div class="fixed inset-0 z-[-1] bg-tech-grid pointer-events-none w-full h-full"></div>
 
-    <!-- NAV (Standardized) -->
+    <!-- Ambient Glow (Fixed) -->
+    <div class="fixed inset-0 w-full h-full bg-glow-gradient pointer-events-none z-[-1]"></div>
+
+    <!-- NAV -->
     <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="index.html" class="block hover:opacity-80 transition">
-                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-16 w-auto"> 
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center relative">
+            <a href="index.html" class="block hover:opacity-80 transition flex-shrink-0">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-12 md:h-16 w-auto"> 
             </a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Talent Tree Labs</a>
                 <a href="dictionary.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Competency Dictionary</a>
@@ -89,20 +104,37 @@
                     Book Consultation
                 </a>
             </div>
+
+            <!-- Mobile Hamburger -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+
+            <!-- Mobile Dropdown -->
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-panel-mobile shadow-2xl flex-col p-6 space-y-4 md:hidden animate-fadeIn">
+                <a href="index.html" class="block text-base font-medium text-white border-b border-white/5 pb-2">Talent Tree Labs</a>
+                <a href="dictionary.html" class="block text-base font-medium text-gray-400 hover:text-white border-b border-white/5 pb-2">Competency Dictionary</a>
+                <a href="consultants.html" class="block text-base font-medium text-gray-400 hover:text-white border-b border-white/5 pb-2">Our Consultants</a>
+                <a href="consultation.html" class="block w-full text-center px-5 py-3 bg-brand-slate text-white font-bold rounded shadow-lg mt-4">Book Consultation</a>
+            </div>
         </div>
     </nav>
 
     <!-- CONTENT -->
-    <main class="flex-grow flex items-center justify-center pt-32 pb-20 px-6 relative z-10">
+    <!-- Updated pt to 28 for mobile -->
+    <main class="flex-grow flex items-center justify-center pt-28 md:pt-32 pb-20 px-6 relative z-10">
+        <!-- Added flex-col for mobile stacking -->
         <div class="glass-panel w-full max-w-5xl rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-[600px] border border-white/10 fade-on-scroll">
             
             <!-- LEFT: CONTEXT -->
-            <div class="bg-white/5 p-10 md:w-2/5 border-r border-white/5 flex flex-col justify-between relative overflow-hidden">
+            <div class="bg-white/5 p-8 md:p-10 md:w-2/5 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-between relative overflow-hidden">
                 <!-- Decorative accent -->
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-slate to-brand-accent"></div>
                 
                 <div>
-                    <h1 class="font-display text-4xl font-bold text-white mb-6">Let's Strategize.</h1>
+                    <h1 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">Let's Strategize.</h1>
                     <p class="text-gray-300 text-base leading-relaxed mb-10">
                         Book a discovery call to discuss your organization's pain points. No sales pitch, just a diagnostic.
                     </p>
@@ -123,7 +155,7 @@
                 </div>
                 <div class="mt-12">
                     <p class="text-xs text-brand-accent font-bold uppercase tracking-widest mb-2">Email Direct</p>
-                    <a href="mailto:hello@talenttreelabs.com" class="text-white hover:text-brand-accent transition text-lg font-medium">hello@talenttreelabs.com</a>
+                    <a href="mailto:hello@talenttreelabs.com" class="text-white hover:text-brand-accent transition text-lg font-medium break-all">hello@talenttreelabs.com</a>
                 </div>
             </div>
 
@@ -137,7 +169,6 @@
                         <h3 class="text-white font-bold text-2xl mb-2">Schedule via Calendly</h3>
                         <p class="text-gray-400 text-sm mb-8">We typically book 2 weeks in advance.</p>
                         
-                        <!-- CALENDLY LINK UPDATE HERE -->
                         <a href="https://calendly.com/lmnbonifacio/ttl-consultation" target="_blank" class="block text-center px-8 py-3 bg-brand-slate text-white text-sm font-bold rounded-lg hover:bg-brand-accent transition shadow-lg w-full">
                             Open Calendar
                         </a>
@@ -153,6 +184,14 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Logic
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex');
+            });
+
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
