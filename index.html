@@ -1,246 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent Tree Labs - Competency Dictionary</title>
-    
-    <!-- Tailwind CSS for styling -->
+    <title>Talent Tree Labs | Professionalizing the Ecosystem</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts for custom typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom Styles -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { indigo: '#1e1e34', slate: '#48466D', mist: '#A6A5B8', cool: '#D1D1DB', white: '#F4F4F7', dark: '#151525' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Oxanium', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --brand-deep-indigo: #1e1e34;
-            --brand-slate-blue: #48466D;
-            --brand-silver-mist: #A6A5B8;
-            --brand-cool-gray: #D1D1DB;
-            --brand-off-white: #F4F4F7;
-            --font-main: 'Oxanium', sans-serif;
-        }
-        body { 
-            background-color: var(--brand-deep-indigo); 
-            color: var(--brand-cool-gray); 
-            font-family: var(--font-main); 
-        }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--brand-deep-indigo); }
-        ::-webkit-scrollbar-thumb { background: var(--brand-slate-blue); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--brand-silver-mist); }
-        #page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1636487658590-ce3df9f3a1c5?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            z-index: 0;
-            border-radius: 0.5rem;
+        body { background-color: #1e1e34; color: #D1D1DB; }
+        .bg-tech-grid {
+            background-image: linear-gradient(rgba(72, 70, 109, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(72, 70, 109, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased bg-brand-indigo font-sans selection:bg-brand-slate selection:text-white">
 
-    <!-- Navigation Bar -->
-    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div class="flex items-center">
-            <span class="text-xl font-bold text-[var(--brand-off-white)]">Talent Tree Labs</span>
-        </div>
-        <div class="hidden md:flex items-center space-x-6">
-            <a href="#" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] transition-colors">Home</a>
-            <a href="#" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] transition-colors">About</a>
-            <a href="#" class="text-[var(--brand-off-white)] font-bold">Competency Dictionary</a>
-            <a href="#" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] transition-colors">Training Programs</a>
-            <a href="#" class="bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-2 px-4 rounded-lg transition-all">Book a Consultation</a>
-        </div>
-        <div class="md:hidden">
-            <button class="text-white focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-brand-indigo/90 backdrop-blur-md border-b border-brand-slate/30">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-display font-bold text-2xl text-brand-white tracking-wide hover:text-brand-mist transition">TALENT TREE LABS</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="dictionary.html" class="text-sm font-medium text-brand-mist hover:text-brand-white transition-colors">Competency Dictionary</a>
+                <a href="#services" class="text-sm font-medium text-brand-mist hover:text-brand-white transition-colors">Services</a>
+                <a href="consultation.html" class="px-5 py-2 bg-brand-slate hover:bg-brand-slate/80 text-brand-white text-sm font-bold rounded-md transition-all shadow-lg">Book Consultation</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <div class="container mx-auto px-4 py-8">
-        
-        <section id="page-hero" class="relative text-center mt-4 mb-12 py-10 rounded-lg overflow-hidden">
-            <h1 class="relative text-4xl md:text-5xl font-bold text-[var(--brand-off-white)] tracking-tight z-10">Gaming & Esports</h1>
-            <h2 class="relative text-3xl md:text-4xl font-light text-[var(--brand-cool-gray)] z-10">Competency Dictionary</h2>
-        </section>
-        
-      <section class="max-w-5xl mx-auto text-start mb-16 space-y-4 text-[var(--brand-cool-gray)]">
-            <p class="text-lg">
-                Welcome to the Talent Tree Labs Competency Dictionary! This tool is designed to define what "good" truly looks like in the gaming and esports industry, across the diverse range of functions that exist within it. Each competency has its own rubric that contains "behavioral indicators." These describe the observable and measurable evidence of competence across four progression levels: basic, intermediate, advanced, and superior.
-            </p>
-            <p class="text-lg">
-                Use this dictionary to establish clear and objective standards for your organization. This dictionary serves as a foundation for smarter recruitment, targeted training, and fair performance management. For individuals, it's a roadmap for personal and professional development, helping you identify the exact skills needed to level up your career.
-            </p>
-        </section>
-
-        <section id="about-framework" class="max-w-6xl mx-auto mb-20 p-8 bg-black/20 border border-[var(--brand-slate-blue)] rounded-xl shadow-2xl">
-            <h3 class="text-3xl font-bold text-center text-[var(--brand-off-white)] mb-8">About the Framework</h3>
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="space-y-4 text-[var(--brand-cool-gray)]">
-                    <p>The gaming and esports industry is a unique intersection of technology, entertainment, and sport. To accurately capture this landscape, our framework organizes the industry into five interdependent domains, which are then further broken down into 11 job clusters.</p>
-                    <p>This model maps the entire value chain of the industry, from the core product -- the games themselves -- to the competitive spirit that drives the commercial spectacle, supported by its passionate community, all built on top of core business foundations.</p>
-                    <a href="assets/TTL_Research for GES Competency_16 July 2025.pdf" download="TTL_Research for GES Competency_16 July 2025.pdf" class="inline-block mt-4 bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-2 px-4 rounded-lg transition-all">Download the Research PDF</a>
+    <!-- HERO -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-tech-grid">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl">
+                <div class="inline-block px-3 py-1 border border-brand-slate/50 rounded-full bg-brand-slate/10 text-xs font-display text-brand-mist tracking-widest uppercase mb-6">Professionalization & Upskilling</div>
+                <h1 class="font-display text-5xl md:text-7xl font-bold text-brand-white leading-tight mb-6">
+                    Stop Playing on <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-slate to-white">Survival Mode.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-brand-mist mb-10 leading-relaxed max-w-2xl">
+                    We aim to prevent the "boom and fizzle" cycle of the esports industry. We build sustainable, industry-best talent systems so your organization can win the long game.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="dictionary.html" class="px-8 py-4 bg-brand-white text-brand-indigo font-bold rounded-md hover:bg-brand-mist transition-all text-center">Explore the Framework</a>
+                    <a href="consultation.html" class="px-8 py-4 border border-brand-slate text-brand-white font-bold rounded-md hover:bg-brand-slate/20 transition-all text-center">Partner With Us</a>
                 </div>
-                <div>
-                    <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="GES Competency Framework" class="mx-auto rounded-lg shadow-lg w-full">
-                </div>
-            </div>
-        </section>
-
-        <main id="competency-domains" class="space-y-16"></main>
-
-        <footer class="flex justify-center mt-24">
-            <img src="assets/TTL-Logo.png" alt="Talent Tree Labs Logo" class="h-36">
-        </footer>
-    </div>
-
-    <div id="competency-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 transition-opacity duration-300 opacity-0 pointer-events-none">
-        <div id="modal-content" class="bg-[var(--brand-deep-indigo)] border border-[var(--brand-slate-blue)] rounded-lg shadow-2xl w-11/12 h-5/6 max-w-7xl flex flex-col transform scale-95 transition-all duration-300">
-            <header class="flex justify-between items-center p-4 border-b border-[var(--brand-slate-blue)] flex-shrink-0">
-                <h2 id="modal-title" class="text-2xl font-bold text-[var(--brand-off-white)]"></h2>
-                <button id="close-btn" class="text-[var(--brand-cool-gray)] hover:text-[var(--brand-off-white)] text-4xl leading-none transition-colors">&times;</button>
-            </header>
-            <div class="p-6 overflow-y-auto flex-grow">
-                <ul id="competency-list" class="space-y-3"></ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- SCRIPT LOADING -->
-    <script src="competencies.js" defer></script>
-    <script defer>
-        document.addEventListener('DOMContentLoaded', () => {
-            const domainContainer = document.getElementById('competency-domains');
-            const modal = document.getElementById('competency-modal');
-            const modalContent = document.getElementById('modal-content');
-            const modalTitle = document.getElementById('modal-title');
-            const competencyList = document.getElementById('competency-list');
-            const closeButton = document.getElementById('close-btn');
+    <!-- THE PROBLEM -->
+    <section class="py-20 bg-brand-dark border-y border-brand-slate/20">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="font-display text-3xl font-bold text-brand-white mb-6">The "Competency Gap" is a Threat.</h2>
+                <p class="text-brand-cool mb-6 leading-relaxed">
+                    Everyone says the industry is in 'survival mode' and uses that as an excuse not to invest in talent. <strong class="text-brand-white">We see it as the very reason you have to.</strong>
+                </p>
+                <p class="text-brand-cool mb-6 leading-relaxed">
+                    Investing in talent creates the capacity to deliver profitable products at scale, at speed, and for sustained periods.
+                </p>
+            </div>
+            <div class="relative h-64 bg-brand-indigo border border-brand-slate/50 rounded-lg flex items-center justify-center">
+                <div class="text-center">
+                    <p class="font-display text-6xl font-bold text-brand-white">3 Years</p>
+                    <p class="text-brand-mist uppercase tracking-widest text-xs mt-2">Average Org Lifespan</p>
+                    <p class="text-brand-slate/50 text-xs mt-4 italic">Let's beat the average.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            if (typeof COMPETENCY_DATA === 'undefined' || !domainContainer) {
-                console.error('Competency data not found. Ensure competencies.js is loaded correctly.');
-                domainContainer.innerHTML = '<p class="text-center text-red-400">Error: Could not load competency data.</p>';
-                return;
-            }
+    <!-- SERVICES -->
+    <section id="services" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="font-display text-3xl font-bold text-brand-white mb-4">The Toolkit</h2>
+                <p class="text-brand-mist">We don't just give advice; we build the mature systems you are missing.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-dark p-8 rounded-lg border border-brand-slate/20 hover:border-brand-slate hover:-translate-y-1 transition-all duration-300">
+                    <h3 class="font-display text-xl font-bold text-brand-white mb-3">Strategic Design</h3>
+                    <p class="text-brand-cool text-sm leading-relaxed">Organization Design, Workforce Strategy, Skills Mapping, and Job Analysis.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-brand-dark p-8 rounded-lg border border-brand-slate/20 hover:border-brand-slate hover:-translate-y-1 transition-all duration-300">
+                    <h3 class="font-display text-xl font-bold text-brand-white mb-3">Process Improvement</h3>
+                    <p class="text-brand-cool text-sm leading-relaxed">We audit and overhaul your existing HR processes (Recruitment, Onboarding, Performance).</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-brand-dark p-8 rounded-lg border border-brand-slate/20 hover:border-brand-slate hover:-translate-y-1 transition-all duration-300">
+                    <h3 class="font-display text-xl font-bold text-brand-white mb-3">Training & Development</h3>
+                    <p class="text-brand-cool text-sm leading-relaxed">Bespoke training programs from "Digital Wellness" to "Project Management" for gamers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            /**
-             * [FIXED] Creates the HTML for a cluster button.
-             * It no longer adds the 'disabled' attribute, making all buttons clickable.
-             * It only adds a visual style ('opacity-50') if there are no rubrics.
-             * @param {string} domainName - The name of the parent domain.
-             * @param {string} clusterName - The name of the cluster.
-             * @param {Array} competencies - The array of competencies for this cluster.
-             * @returns {string} The HTML string for the button.
-             */
-            const createClusterButtonHTML = (domainName, clusterName, competencies) => {
-                const hasDetailedContent = competencies.some(comp => comp.rubric && Object.keys(comp.rubric).length > 0);
-                const buttonClasses = 'cluster-btn bg-[var(--brand-slate-blue)] hover:bg-[var(--brand-silver-mist)] text-[var(--brand-off-white)] hover:text-[var(--brand-deep-indigo)] font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg border-2 border-[var(--brand-silver-mist)]/50';
-                const noRubricClasses = 'opacity-50'; // Just a visual style, no 'disabled' functionality.
-                
-                // The 'disabled' attribute has been removed from the return statement.
-                return `<button class="${buttonClasses} ${!hasDetailedContent ? noRubricClasses : ''}" data-domain="${domainName}" data-cluster="${clusterName}">${clusterName}</button>`;
-            };
-
-            const createDomainSectionHTML = (domainName, clusters) => {
-                const clusterButtonsHTML = Object.entries(clusters).map(([clusterName, competencies]) => createClusterButtonHTML(domainName, clusterName, competencies)).join('');
-                return `<section class="mb-12"><h3 class="text-3xl font-bold text-center text-[var(--brand-off-white)] mb-8">${domainName}</h3><div class="flex flex-wrap justify-center gap-4 md:gap-6">${clusterButtonsHTML}</div></section>`;
-            };
-
-            const populateDomains = () => {
-                const allDomainsHTML = Object.entries(COMPETENCY_DATA).map(([domainName, clusters]) => createDomainSectionHTML(domainName, clusters)).join('');
-                domainContainer.innerHTML = allDomainsHTML;
-            };
-
-            const createRubricHTML = (rubric) => {
-                const levels = Object.keys(rubric);
-                const columnsHTML = levels.map(level => {
-                    const header = `<h4 class="font-bold text-[var(--brand-off-white)] pb-2 border-b border-[var(--brand-slate-blue)] mb-3">${level.replace(/ \(.+\)/, '')}</h4>`;
-                    const indicators = rubric[level] || [];
-                    const indicatorsHTML = indicators.map(indicator => `<p class="text-[var(--brand-cool-gray)] text-sm mb-2">${indicator}</p>`).join('');
-                    return `<div>${header}${indicatorsHTML}</div>`;
-                }).join('');
-                return `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">${columnsHTML}</div>`;
-            };
-
-            const createCompetencyItemHTML = (comp) => {
-                const hasRubric = comp.rubric && Object.keys(comp.rubric).length > 0;
-                const titleClasses = `competency-title p-4 flex justify-between items-center transition-colors duration-200 ${hasRubric ? 'cursor-pointer hover:bg-[var(--brand-slate-blue)]/50' : 'cursor-default'}`;
-                const arrowHTML = `<span class="text-xl text-[var(--brand-silver-mist)] transform transition-transform duration-300">${hasRubric ? '&#9662;' : ''}</span>`;
-                let rubricHTML = '';
-                if (hasRubric) {
-                    rubricHTML = `<div class="competency-rubric hidden p-6 bg-black/20"><p class="italic text-[var(--brand-cool-gray)] mb-6">${comp.definition || ''}</p>${createRubricHTML(comp.rubric)}</div>`;
-                }
-                return `<li class="competency-item bg-[var(--brand-deep-indigo)]/90 rounded-lg overflow-hidden border border-[var(--brand-slate-blue)] ${!hasRubric ? 'opacity-60' : ''}"><div class="${titleClasses}"><span>${comp.title}</span>${arrowHTML}</div>${rubricHTML}</li>`;
-            };
-
-            const showCompetenciesForCluster = (domainName, clusterName) => {
-                const competencies = COMPETENCY_DATA[domainName]?.[clusterName] || [];
-                modalTitle.textContent = clusterName;
-                competencyList.innerHTML = competencies.map(createCompetencyItemHTML).join('');
-                openModal();
-            };
-
-            const toggleRubric = (titleElement) => {
-                const rubric = titleElement.nextElementSibling;
-                if (rubric && rubric.classList.contains('competency-rubric')) {
-                    const arrow = titleElement.querySelector('span:last-child');
-                    rubric.classList.toggle('hidden');
-                    arrow.classList.toggle('rotate-180');
-                }
-            };
-
-            const openModal = () => {
-                modal.classList.remove('pointer-events-none', 'opacity-0');
-                modalContent.classList.remove('scale-95');
-                document.body.style.overflow = 'hidden';
-            };
-
-            const closeModal = () => {
-                modal.classList.add('opacity-0');
-                modalContent.classList.add('scale-95');
-                document.body.style.overflow = '';
-                setTimeout(() => modal.classList.add('pointer-events-none'), 300);
-            };
-
-            /**
-             * [FIXED] The event listener for the domain container.
-             * It no longer checks if the button is disabled, as all buttons are now clickable.
-             */
-            domainContainer.addEventListener('click', (e) => {
-                const button = e.target.closest('.cluster-btn');
-                // If a button was clicked, regardless of its style, open the modal.
-                if (button) {
-                    showCompetenciesForCluster(button.dataset.domain, button.dataset.cluster);
-                }
-            });
-
-            competencyList.addEventListener('click', (e) => {
-                const titleElement = e.target.closest('.competency-title');
-                if (titleElement) {
-                    toggleRubric(titleElement);
-                }
-            });
-
-            closeButton.addEventListener('click', closeModal);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeModal();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) closeModal();
-            });
-            
-            populateDomains();
-        });
-    </script>
+    <!-- FOOTER -->
+    <footer class="bg-brand-indigo py-12 border-t border-brand-slate/30">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-brand-slate text-xs">&copy; 2025 Talent Tree Labs. Defining "What Good Looks Like."</p>
+        </div>
+    </footer>
 </body>
 </html>
