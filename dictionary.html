@@ -9,9 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oxanium:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Configuration -->
     <script>
@@ -56,12 +54,12 @@
             overflow-x: hidden; 
         }
         
+        /* FIXED GRID LOGIC */
         .bg-tech-grid {
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
-            background-attachment: fixed; 
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
         }
 
@@ -70,6 +68,14 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Mobile Menu Glass */
+        .glass-panel-mobile {
+            background: rgba(11, 11, 21, 0.95); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .glass-card {
@@ -103,19 +109,24 @@
         }
         
         /* Scrollbar Styling */
-        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0B0B15; }
         ::-webkit-scrollbar-thumb { background: #48466D; border-radius: 3px; }
     </style>
 </head>
-<body class="antialiased font-sans bg-tech-grid relative min-h-screen flex flex-col">
+<body class="antialiased font-sans relative min-h-screen flex flex-col">
 
-    <!-- NAV (Standardized) -->
+    <!-- FIXED GRID LAYER -->
+    <div class="fixed inset-0 z-[-1] bg-tech-grid pointer-events-none w-full h-full"></div>
+
+    <!-- NAV -->
     <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="index.html" class="block hover:opacity-80 transition">
-                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-16 w-auto"> 
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center relative">
+            <a href="index.html" class="block hover:opacity-80 transition flex-shrink-0">
+                <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-12 md:h-16 w-auto"> 
             </a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Talent Tree Labs</a>
                 <a href="dictionary.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Competency Dictionary</a>
@@ -124,17 +135,32 @@
                     Book Consultation
                 </a>
             </div>
+
+            <!-- Mobile Hamburger -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+
+            <!-- Mobile Dropdown -->
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full glass-panel-mobile shadow-2xl flex-col p-6 space-y-4 md:hidden animate-fadeIn">
+                <a href="index.html" class="block text-base font-medium text-white border-b border-white/5 pb-2">Talent Tree Labs</a>
+                <a href="dictionary.html" class="block text-base font-medium text-gray-400 hover:text-white border-b border-white/5 pb-2">Competency Dictionary</a>
+                <a href="consultants.html" class="block text-base font-medium text-gray-400 hover:text-white border-b border-white/5 pb-2">Our Consultants</a>
+                <a href="consultation.html" class="block w-full text-center px-5 py-3 bg-brand-slate text-white font-bold rounded shadow-lg mt-4">Book Consultation</a>
+            </div>
         </div>
     </nav>
 
-    <!-- TOP EXPLAINER (Full Width, Below Nav) -->
-    <header class="pt-32 pb-12 relative z-10 border-b border-white/5">
+    <!-- TOP EXPLAINER -->
+    <header class="pt-28 md:pt-32 pb-8 md:pb-12 relative z-10 border-b border-white/5">
         <div class="absolute top-0 left-0 w-full h-full bg-glow-gradient pointer-events-none"></div>
         <div class="container mx-auto px-6 fade-on-scroll">
-            <div class="glass-panel p-10 rounded-xl bg-brand-indigo/50 border border-brand-slate/30 shadow-2xl max-w-5xl mx-auto">
+            <div class="glass-panel p-6 md:p-10 rounded-xl bg-brand-indigo/50 border border-brand-slate/30 shadow-2xl max-w-5xl mx-auto">
                 <div class="max-w-3xl">
-                    <h1 class="font-display text-4xl md:text-5xl font-bold text-white mb-4">The DNA of a High-Performance Organization.</h1>
-                    <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                    <h1 class="font-display text-3xl md:text-5xl font-bold text-white mb-4">The DNA of a High-Performance Organization.</h1>
+                    <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-8">
                         This dictionary maps the skills, behaviors, and standards that define success in the gaming and esports industry. It is the foundational data layer for all modern HR tools.
                     </p>
                 </div>
@@ -148,14 +174,14 @@
                         </h4>
                         <p class="text-sm text-gray-400">Derive precise job descriptions and structured interview guides.</p>
                     </div>
-                    <div>
+                    <div class="hidden md:block"> <!-- Hidden on mobile to save space -->
                         <h4 class="text-brand-accent font-bold text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                             Performance
                         </h4>
                         <p class="text-sm text-gray-400">Build fair scorecards and objective career progression paths.</p>
                     </div>
-                    <div>
+                    <div class="hidden md:block"> <!-- Hidden on mobile to save space -->
                         <h4 class="text-brand-accent font-bold text-sm uppercase tracking-wider mb-2 flex items-center gap-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                             Strategy
@@ -167,28 +193,31 @@
         </div>
     </header>
 
-    <!-- MAIN CONTENT AREA (Sidebar + Content) -->
-    <div class="container mx-auto px-6 py-12 relative z-10 flex-1 flex flex-col md:flex-row gap-12">
+    <!-- MAIN CONTENT AREA -->
+    <div class="container mx-auto px-6 py-8 md:py-12 relative z-10 flex-1 flex flex-col md:flex-row gap-8 md:gap-12">
         
-        <!-- SIDEBAR: Sticky -->
-        <aside class="md:w-72 flex-shrink-0">
-            <div class="sticky top-28">
+        <!-- SIDEBAR -->
+        <!-- Mobile: Horizontal Scroll / Desktop: Sticky Left -->
+        <aside class="w-full md:w-72 flex-shrink-0">
+            <div class="md:sticky md:top-28">
                 <h3 class="text-xs font-bold text-brand-accent uppercase tracking-widest mb-4 pl-2">Competency Domains</h3>
-                <div id="domain-list" class="space-y-2 glass-panel p-4 rounded-lg border border-white/5">
-                    <!-- Domains injected here via JS -->
+                
+                <!-- Container modified for mobile scrolling -->
+                <div id="domain-list" class="flex overflow-x-auto space-x-4 md:block md:space-x-0 md:space-y-2 glass-panel p-2 md:p-4 rounded-lg border border-white/5 pb-4 md:pb-4">
+                    <!-- Domains injected via JS -->
                 </div>
                 
-                <div class="mt-8 p-4 bg-brand-indigo/50 rounded border border-brand-slate/40 text-sm text-gray-400 fade-on-scroll">
+                <div class="mt-4 md:mt-8 p-4 bg-brand-indigo/50 rounded border border-brand-slate/40 text-sm text-gray-400 fade-on-scroll hidden md:block">
                     <span class="text-brand-accent font-bold">Tip:</span> Select a cluster to expand its competencies.
                 </div>
             </div>
         </aside>
 
-        <!-- CONTENT: Dynamic -->
+        <!-- CONTENT -->
         <main class="flex-1 min-w-0">
             <div class="mb-8 pb-4 border-b border-white/10 fade-on-scroll">
-                <h1 id="page-title" class="font-display text-4xl font-bold text-white mb-2">Select a Domain</h1>
-                <p class="text-gray-400">Explore the specific skills and behaviors required for this sector.</p>
+                <h1 id="page-title" class="font-display text-3xl md:text-4xl font-bold text-white mb-2">Select a Domain</h1>
+                <p class="text-gray-400 text-sm md:text-base">Explore the specific skills and behaviors required for this sector.</p>
             </div>
             
             <div id="content-area" class="space-y-16 pb-24 min-h-[500px]">
@@ -200,19 +229,19 @@
         </main>
     </div>
 
-    <!-- MODAL (Hidden by default) -->
+    <!-- MODAL -->
     <div id="modal" class="fixed inset-0 z-[100] hidden">
         <div class="absolute inset-0 bg-[#0B0B15]/90 backdrop-blur-md" onclick="closeModal()"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div class="glass-panel w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl relative bg-[#0B0B15] border border-white/10 animate-[fadeIn_0.3s_ease-out]">
-                <div class="p-8 md:p-12">
+                <div class="p-6 md:p-12">
                     <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition text-xl">✕</button>
                     
-                    <h2 id="modal-title" class="font-display text-3xl font-bold text-white mb-6 pr-8">Title</h2>
+                    <h2 id="modal-title" class="font-display text-2xl md:text-3xl font-bold text-white mb-6 pr-8">Title</h2>
                     
                     <div class="bg-brand-slate/10 p-6 rounded-lg border border-brand-slate/20 mb-10">
                         <h4 class="text-xs font-bold text-brand-accent uppercase tracking-wider mb-2">Definition</h4>
-                        <p id="modal-def" class="text-gray-200 italic font-serif text-lg leading-relaxed">Definition...</p>
+                        <p id="modal-def" class="text-gray-200 italic font-serif text-base md:text-lg leading-relaxed">Definition...</p>
                     </div>
                     
                     <div id="modal-grid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -241,8 +270,18 @@
         const pageTitle = document.getElementById('page-title');
         const modal = document.getElementById('modal');
 
-        // --- Scroll Observer Logic ---
         document.addEventListener('DOMContentLoaded', () => {
+            // 1. Mobile Menu Logic
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(mobileBtn && mobileMenu) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    mobileMenu.classList.toggle('flex');
+                });
+            }
+
+            // 2. Scroll Observer
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -255,7 +294,7 @@
             document.querySelectorAll('.fade-on-scroll').forEach(el => scrollObserver.observe(el));
 
             if (typeof COMPETENCY_DATA === 'undefined') {
-                contentArea.innerHTML = '<p class="text-red-400 font-mono">Error: competencies.js not found. Ensure files are in the same folder.</p>';
+                contentArea.innerHTML = '<p class="text-red-400 font-mono">Error: competencies.js not found.</p>';
                 return;
             }
             renderSidebar();
@@ -266,22 +305,23 @@
         function renderSidebar() {
             Object.keys(COMPETENCY_DATA).forEach((domain, index) => {
                 const btn = document.createElement('button');
-                btn.className = "w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white transition-all duration-200";
+                // Updated Classes for Mobile Compatibility (Whitespace nowrap for scrolling)
+                btn.className = "w-auto md:w-full text-left px-4 py-2 md:py-3 rounded-lg text-sm font-medium text-gray-400 hover:bg-white/5 hover:text-white transition-all duration-200 whitespace-nowrap flex-shrink-0 border border-white/5 md:border-0 bg-white/5 md:bg-transparent";
                 btn.innerText = domain;
                 btn.onclick = (e) => {
                     document.querySelectorAll('#domain-list button').forEach(b => {
-                        b.classList.remove('sidebar-btn-active');
+                        b.classList.remove('sidebar-btn-active', 'text-white', 'border-brand-accent');
                         b.classList.add('text-gray-400');
                     });
                     e.target.classList.remove('text-gray-400');
-                    e.target.classList.add('sidebar-btn-active');
+                    e.target.classList.add('sidebar-btn-active', 'text-white');
                     loadDomain(domain);
                 };
                 domainList.appendChild(btn);
                 
                 if (index === 0) {
                     btn.classList.remove('text-gray-400');
-                    btn.classList.add('sidebar-btn-active');
+                    btn.classList.add('sidebar-btn-active', 'text-white');
                 }
             });
         }
@@ -291,59 +331,42 @@
             contentArea.innerHTML = ''; 
             
             const clusters = COMPETENCY_DATA[domain];
-            
-            // --- NEW SORTING LOGIC START ---
-            // Convert to array and sort: Clusters with at least one rubric go first
             const sortedClusters = Object.entries(clusters).sort((a, b) => {
-                const clusterA_Competencies = a[1];
-                const clusterB_Competencies = b[1];
-                
-                const aHasRubric = clusterA_Competencies.some(comp => comp.rubric !== undefined);
-                const bHasRubric = clusterB_Competencies.some(comp => comp.rubric !== undefined);
-
-                // If B has rubric and A doesn't, B comes first (return 1)
+                const aHasRubric = a[1].some(comp => comp.rubric !== undefined);
+                const bHasRubric = b[1].some(comp => comp.rubric !== undefined);
                 if (bHasRubric && !aHasRubric) return 1;
-                // If A has rubric and B doesn't, A comes first (return -1)
                 if (aHasRubric && !bHasRubric) return -1;
-                return 0; // Otherwise, keep original order
+                return 0;
             });
-            // --- NEW SORTING LOGIC END ---
             
-            // Observer for the new dynamic items
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const dynamicObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) entry.target.classList.add('visible');
                 });
-            }, observerOptions);
+            }, { root: null, rootMargin: '0px', threshold: 0.1 });
 
-            // Create Container for Accordion Items
             const listWrapper = document.createElement('div');
             listWrapper.className = "space-y-4"; 
 
             sortedClusters.forEach(([clusterName, comps], index) => {
-                // Accordion Item Container
                 const item = document.createElement('div');
                 item.className = "fade-on-scroll border border-white/10 rounded-xl overflow-hidden bg-white/5 transition-all duration-300"; 
                 
-                // 1. The Header (Clickable)
                 const headerBtn = document.createElement('button');
                 headerBtn.className = "w-full flex items-center justify-between p-6 text-left hover:bg-white/5 transition-colors group select-none";
                 headerBtn.innerHTML = `
-                    <h3 class="font-display text-xl md:text-2xl font-bold text-white group-hover:text-brand-accent transition-colors border-l-4 border-brand-slate pl-4">${clusterName}</h3>
+                    <h3 class="font-display text-lg md:text-2xl font-bold text-white group-hover:text-brand-accent transition-colors border-l-4 border-brand-slate pl-4">${clusterName}</h3>
                     <span class="transform transition-transform duration-300 text-gray-400 group-hover:text-white">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </span>
                 `;
 
-                // 2. The Content (Hidden by default)
                 const contentContainer = document.createElement('div');
                 contentContainer.className = "hidden bg-black/20 p-6 border-t border-white/5";
                 
                 const grid = document.createElement('div');
                 grid.className = "grid md:grid-cols-2 gap-5";
 
-                // 3. The Cards
                 comps.forEach(comp => {
                     const card = document.createElement('div');
                     const hasRubric = comp.rubric !== undefined;
@@ -360,13 +383,12 @@
                     }
                     
                     card.innerHTML = html;
-                    if (hasRubric) card.onclick = (e) => { e.stopPropagation(); openModal(comp); }; // Stop prop so we don't toggle accordion
+                    if (hasRubric) card.onclick = (e) => { e.stopPropagation(); openModal(comp); }; 
                     grid.appendChild(card);
                 });
 
                 contentContainer.appendChild(grid);
                 
-                // Toggle Logic
                 headerBtn.onclick = () => {
                     const isHidden = contentContainer.classList.contains('hidden');
                     const icon = headerBtn.querySelector('svg');
@@ -375,7 +397,7 @@
                         contentContainer.classList.remove('hidden');
                         contentContainer.classList.add('animate-fadeIn');
                         icon.style.transform = 'rotate(180deg)';
-                        headerBtn.classList.add('bg-white/5'); // Active state
+                        headerBtn.classList.add('bg-white/5'); 
                     } else {
                         contentContainer.classList.add('hidden');
                         contentContainer.classList.remove('animate-fadeIn');
@@ -387,8 +409,6 @@
                 item.appendChild(headerBtn);
                 item.appendChild(contentContainer);
                 listWrapper.appendChild(item);
-
-                // Observe this new section
                 dynamicObserver.observe(item);
             });
 
