@@ -38,7 +38,6 @@
     <nav class="fixed w-full z-50 glass-panel border-b-0 border-b border-white/5">
         <div class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="index.html" class="block hover:opacity-80 transition">
-                <!-- Increased logo size here -->
                 <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-16 w-auto">
             </a>
             <div class="hidden md:flex items-center space-x-8">
@@ -68,7 +67,7 @@
                     <div class="grid sm:grid-cols-2 gap-8 text-sm">
                         <div>
                             <h5 class="text-white font-bold mb-2 uppercase tracking-wider text-xs text-brand-accent">Foundational Work</h5>
-                            <p class="text-gray-500 leading-relaxed">Co-founder of Loyola Gaming, Ateneo's first ever gaming and esports student organization. Launched a PHP2,000,000.00 scholarship fund.</p>
+                            <p class="text-gray-500 leading-relaxed">Co-founder of Loyola Gaming, Ateneo's first ever gaming and esports student organization. Ex-AcadArena: Launched a PHP2,000,000.00 scholarship fund and an educational platform.</p>
                         </div>
                         <div>
                             <h5 class="text-white font-bold mb-2 uppercase tracking-wider text-xs text-brand-accent">Professional Skill Stack</h5>
@@ -104,13 +103,40 @@
                 <!-- Carousel Container -->
                 <div class="relative overflow-hidden rounded-xl glass-panel border border-white/5 min-h-[400px]">
                     <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out h-full">
-                        <!-- Project 1 -->
-                        <div class="w-full flex-shrink-0 grid md:grid-cols-2 h-full">
-                            <div class="bg-[#151525] flex items-center justify-center p-12">
-                                <div class="text-gray-600 font-display text-xl">[Project Image 1]</div>
+                        
+                        <!-- Project 1: ASA Scholarships (NEW) -->
+                        <div class="w-full flex-shrink-0 grid md:grid-cols-2 h-full group cursor-pointer" onclick="window.location.href='project-asa.html'">
+                            <div class="bg-[#151525] flex items-center justify-center p-12 relative overflow-hidden">
+                                <!-- Placeholder for Video/Image -->
+                                <div class="text-gray-600 font-display text-center">
+                                    <span class="block text-4xl mb-2 group-hover:text-brand-accent transition">▶</span>
+                                    [Testimonial Video Placeholder]<br>
+                                    <span class="text-xs opacity-50">Women in Esports Awardee</span>
+                                </div>
                             </div>
-                            <div class="p-10 flex flex-col justify-center bg-white/5">
-                                <h3 class="font-display text-2xl font-bold text-white mb-4">Launched AcadArena BoostCamp (ABC)</h3>
+                            <div class="p-10 flex flex-col justify-center bg-white/5 relative">
+                                <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <span class="text-xs font-bold text-brand-accent uppercase tracking-widest border border-brand-accent px-3 py-1 rounded-full">Read Case Study</span>
+                                </div>
+                                <h3 class="font-display text-2xl font-bold text-white mb-4 group-hover:text-brand-accent transition">AcadArena Scholarships and Aids (ASA)</h3>
+                                <p class="text-gray-400 mb-6 text-sm leading-relaxed">"Asa" means "hope" in Tagalog. We launched this program to provide financial aid and recognition to student gamers, empowering the next generation of talent.</p>
+                                <div class="flex gap-2 flex-wrap">
+                                    <span class="px-3 py-1 rounded-full bg-brand-slate/20 border border-brand-slate/30 text-xs text-gray-300">Scholarship Management</span>
+                                    <span class="px-3 py-1 rounded-full bg-brand-slate/20 border border-brand-slate/30 text-xs text-gray-300">Community Impact</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: BoostCamp -->
+                        <div class="w-full flex-shrink-0 grid md:grid-cols-2 h-full group cursor-pointer" onclick="window.location.href='project-abc.html'">
+                            <div class="bg-[#151525] flex items-center justify-center p-12">
+                                <div class="text-gray-600 font-display text-xl group-hover:text-white transition">[Project Image 1]</div>
+                            </div>
+                            <div class="p-10 flex flex-col justify-center bg-white/5 relative">
+                                <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <span class="text-xs font-bold text-brand-accent uppercase tracking-widest border border-brand-accent px-3 py-1 rounded-full">Read Case Study</span>
+                                </div>
+                                <h3 class="font-display text-2xl font-bold text-white mb-4 group-hover:text-brand-accent transition">Launched AcadArena BoostCamp (ABC)</h3>
                                 <p class="text-gray-400 mb-6 text-sm leading-relaxed">ABC was an online educational library to help students build career-ready skills for the gaming and esports industry.</p>
                                 <div class="flex gap-2 flex-wrap">
                                     <span class="px-3 py-1 rounded-full bg-brand-slate/20 border border-brand-slate/30 text-xs text-gray-300">Curriculum Design</span>
@@ -118,13 +144,17 @@
                                 </div>
                             </div>
                         </div>
-                         <!-- Project 2 -->
-                         <div class="w-full flex-shrink-0 grid md:grid-cols-2 h-full">
+
+                         <!-- Project 3: Loyola Gaming (Updated Title) -->
+                         <div class="w-full flex-shrink-0 grid md:grid-cols-2 h-full group cursor-pointer" onclick="window.location.href='project-lg.html'">
                             <div class="bg-[#151525] flex items-center justify-center p-12">
-                                <div class="text-gray-600 font-display text-xl">[Project Image 2]</div>
+                                <div class="text-gray-600 font-display text-xl group-hover:text-white transition">[Project Image 2]</div>
                             </div>
-                            <div class="p-10 flex flex-col justify-center bg-white/5">
-                                <h3 class="font-display text-2xl font-bold text-white mb-4">Founded Loyola Gaming in 2021</h3>
+                            <div class="p-10 flex flex-col justify-center bg-white/5 relative">
+                                <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition duration-300">
+                                    <span class="text-xs font-bold text-brand-accent uppercase tracking-widest border border-brand-accent px-3 py-1 rounded-full">Read Case Study</span>
+                                </div>
+                                <h3 class="font-display text-2xl font-bold text-white mb-4 group-hover:text-brand-accent transition">Founded Loyola Gaming</h3>
                                 <p class="text-gray-400 mb-6 text-sm leading-relaxed">Loyola Gaming was Ateneo de Manila University's first ever gaming and esports organization.</p>
                                 <div class="flex gap-2 flex-wrap">
                                     <span class="px-3 py-1 rounded-full bg-brand-slate/20 border border-brand-slate/30 text-xs text-gray-300">Organization Design</span>
@@ -132,6 +162,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -152,7 +183,7 @@
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         let currentIndex = 0;
-        const totalSlides = 2; // Update based on slides
+        const totalSlides = 3; 
 
         function updateCarousel() {
             track.style.transform = `translateX(-${currentIndex * 100}%)`;
