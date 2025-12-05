@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talent Tree Labs | Professionalizing the Ecosystem</title>
     
-    <!-- ADD THIS LINE HERE -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="assets/TTL-Logo.png">
     
     <!-- Tailwind CSS -->
@@ -51,8 +51,6 @@
 
     <style>
         body { 
-            /* FIX: Re-added solid background color here. 
-               This acts as the base layer so the mask on the grid doesn't fade to white. */
             background-color: #0B0B15;
             color: #E2E8F0; 
             overflow-x: hidden; 
@@ -63,7 +61,6 @@
                 linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 50px 50px;
-            /* This mask was fading out the solid color when they were on the same div */
             mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
         }
 
@@ -122,10 +119,7 @@
 </head>
 <body class="antialiased font-sans selection:bg-brand-accent selection:text-white">
 
-    <!-- FIXED GRID CONTAINER
-         FIX: Removed bg-[#0B0B15] from here. 
-         This div is now strictly for the grid lines overlay. 
-         The solid color comes from the body tag. -->
+    <!-- FIXED GRID CONTAINER -->
     <div class="fixed inset-0 z-[-1] bg-tech-grid pointer-events-none w-full h-full"></div>
 
     <!-- NAVIGATION -->
@@ -135,7 +129,7 @@
                 <img src="assets/TTL-Logo.png" alt="Talent Tree Labs" class="h-12 md:h-16 w-auto"> 
             </a>
             
-            <!-- DESKTOP MENU (Hidden on Mobile) -->
+            <!-- DESKTOP MENU -->
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Talent Tree Labs</a>
                 <a href="dictionary.html" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">Competency Dictionary</a>
@@ -145,7 +139,7 @@
                 </a>
             </div>
 
-            <!-- MOBILE HAMBURGER BUTTON (Visible only on Mobile) -->
+            <!-- MOBILE HAMBURGER BUTTON -->
             <div class="md:hidden">
                 <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,7 +162,6 @@
 
     <!-- HERO SECTION -->
     <section class="relative pt-28 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
-        <!-- Animated Blobs -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-slate/30 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-brand-accent/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
@@ -186,6 +179,7 @@
                     <span class="text-gradient-brand">Survival Mode.</span>
                 </h1>
                 
+                <!-- COPIED TEXT UPDATE -->
                 <p class="text-lg md:text-xl text-gray-400 mb-12 leading-relaxed max-w-2xl mx-auto">
                     We aim to break the "boom and doom" cycle of the esports industry by leveraging best-in-class talent systems so your organization can win the long game.
                 </p>
@@ -208,6 +202,7 @@
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-12 fade-on-scroll">
                 <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-4">The Toolkit</h2>
+                <!-- COPIED TEXT UPDATE -->
                 <p class="text-gray-400">We can build the mature people systems you are missing.</p>
             </div>
 
@@ -217,6 +212,7 @@
                     <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-accent/20 group-hover:text-brand-accent transition-colors text-gray-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                     </div>
+                    <!-- COPIED TEXT UPDATE: People Strategy -->
                     <h3 class="font-display text-xl font-bold text-white mb-3 group-hover:text-brand-accent transition-colors">People Strategy</h3>
                     <p class="text-gray-500 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                         Organization Design, Workforce Planning, Skills Mapping, and Job Analysis. We align your human capital with your business goals.
@@ -265,6 +261,7 @@
                             </li>
                             <li class="flex items-center gap-3">
                                 <svg class="w-5 h-5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                <!-- COPIED TEXT UPDATE: Revenue -->
                                 <span class="text-sm">Build new capabilites to drive revenue beyond brand deals and sponsorships.</span>
                             </li>
                             <li class="flex items-center gap-3">
@@ -294,6 +291,7 @@
         <div class="container mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
                 <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-6">Our Blueprint for the Industry</h2>
+                <!-- COPIED TEXT UPDATE -->
                 <p class="text-gray-400">
                     We have mapped the industry into distinct domains, identifed competency requirements, and built a tool that documents all of it -- all in one place! Jump straight into the interactive competency dictionary.
                 </p>
@@ -301,21 +299,16 @@
 
             <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                 
-                <!-- LEFT: The Research (Framework Image) -->
-                <!-- UPDATED: Replaced anchor tag with div and click handler for modal -->
+                <!-- LEFT: The Framework Image (Triggers Modal) -->
                 <div class="relative group cursor-pointer" onclick="openImageModal()">
                     <div class="glass-panel rounded-xl overflow-hidden border border-white/10 transition duration-300 group-hover:border-brand-slate">
-                        <!-- Image Container -->
                         <div class="relative h-56 md:h-64 bg-[#1A1A2E] overflow-hidden">
                             <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Competency Framework Model" class="w-full h-full object-cover opacity-100 md:opacity-80 md:group-hover:opacity-100 md:group-hover:scale-105 transition duration-500">
                             
-                            <!-- Darker gradient for readability -->
                             <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent md:from-[#0B0B15] md:to-transparent opacity-100 md:opacity-90"></div>
                             
-                            <!-- Icon -->
                             <div class="absolute bottom-6 left-6">
                                 <div class="w-12 h-12 rounded-full bg-brand-slate/30 flex items-center justify-center text-white mb-2 backdrop-blur-sm">
-                                    <!-- Maximize Icon -->
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
                                 </div>
                                 <h3 class="font-display text-2xl font-bold text-white">The Framework</h3>
@@ -323,7 +316,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Hover Effect Overlay (Desktop Only) -->
                     <div class="hidden md:block absolute inset-0 border-2 border-brand-slate rounded-xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
                 </div>
 
@@ -331,14 +323,11 @@
                 <div class="relative group cursor-pointer">
                     <a href="dictionary.html" class="block">
                         <div class="glass-panel rounded-xl overflow-hidden border border-white/10 transition duration-300 group-hover:border-brand-accent">
-                            <!-- Image Container -->
                             <div class="relative h-56 md:h-64 bg-[#1A1A2E] overflow-hidden">
                                 <img src="assets/interactive-tool.png" alt="Interactive Dictionary UI" class="w-full h-full object-cover opacity-100 md:opacity-80 md:group-hover:opacity-100 md:group-hover:scale-105 transition duration-500">
                                 
-                                <!-- MOBILE FIX: Darker gradient for readability -->
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent md:from-[#0B0B15] md:to-transparent opacity-100 md:opacity-90"></div>
                                 
-                                <!-- Icon -->
                                 <div class="absolute bottom-6 left-6">
                                     <div class="w-12 h-12 rounded-full bg-brand-accent/30 flex items-center justify-center text-white mb-2 backdrop-blur-sm">
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -348,7 +337,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Hover Effect Overlay (Desktop Only) -->
                         <div class="hidden md:block absolute inset-0 border-2 border-brand-accent rounded-xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none"></div>
                     </a>
                 </div>
@@ -357,7 +345,7 @@
         </div>
     </section>
 
-    <!-- NEW: IMAGE MODAL -->
+    <!-- IMAGE MODAL (Loads specific asset with background) -->
     <div id="image-modal" class="fixed inset-0 z-[100] hidden" onclick="closeImageModal()">
         <div class="absolute inset-0 bg-[#0B0B15]/95 backdrop-blur-md"></div>
         <div class="absolute inset-0 flex items-center justify-center p-4">
@@ -366,7 +354,8 @@
                     <span>Close</span>
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
-                <img src="assets/Gaming-and-Esports-Competency-Dictionary-Framework-v2.png" alt="Full Competency Framework" class="w-full h-full object-contain rounded-lg shadow-2xl border border-white/10">
+                <!-- Use the user's specific asset for the blown-up view -->
+                <img src="assets/TTL-Framework-w-Background.png" alt="Full Competency Framework" class="w-full h-full object-contain rounded-lg shadow-2xl border border-white/10">
             </div>
         </div>
     </div>
@@ -388,7 +377,7 @@
 
     <!-- SCROLL & INTERACTION SCRIPTS -->
     <script>
-        // NEW: Modal Logic
+        // Modal Logic
         function openImageModal() {
             const modal = document.getElementById('image-modal');
             modal.classList.remove('hidden');
@@ -403,7 +392,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. MOBILE MENU LOGIC (New)
+            // 1. MOBILE MENU LOGIC
             const mobileBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
 
@@ -412,7 +401,7 @@
                 mobileMenu.classList.toggle('flex');
             });
 
-            // 2. Intersection Observer for Fade-In Animation
+            // 2. Intersection Observer
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
             
             const scrollObserver = new IntersectionObserver((entries) => {
